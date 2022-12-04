@@ -10,6 +10,7 @@ let playerLives = 3;
 let opponentLives = 3;
 let fightFinalResult;
 
+
 // Functions
 function random(min, max) {
 
