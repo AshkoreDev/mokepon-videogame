@@ -18,7 +18,7 @@ function random(min, max) {
 
 function choosePlayerPet() {
 
-	const playerPetName = document.createElement('p');
+	// const playerPetName = document.createElement('p');
 
 	if (capipepoPet.checked) {
 
@@ -38,9 +38,6 @@ function choosePlayerPet() {
 	}
 
 	chooseOpponentPet();
-
-	playerPetLives.textContent = playerLives;
-	opponentPetLives.textContent = opponentLives;
 }
 
 function chooseOpponentPet() {
@@ -59,6 +56,15 @@ function chooseOpponentPet() {
 
 		opponentPet = 'RATIGUEYA';
 	}
+
+	if (playerPet) {
+		
+		playerPetName.textContent = `TU MASCOTA ${playerPet}`;
+		opponentPetName.textContent = `TU OPONENTE ${opponentPet}`;
+		playerPetLives.textContent = `TIENE ${playerLives} VIDAS.`;
+		opponentPetLives.textContent = `TIENE ${opponentLives} VIDAS.`;
+	}
+	
 }
 
 function fireAttack() {
@@ -106,15 +112,23 @@ function fight() {
 		fightResult = 'HUBO EMPATE.';
 
 	}	else if(playerAttack == 'FUEGO' && opponentAttack == 'TIERRA' || playerAttack == 'AGUA' && opponentAttack == 'FUEGO' || playerAttack == 'TIERRA' && opponentAttack == 'AGUA') {
-
-		fightResult = 'GANASTE LA PARTIDA.';
+		
 		opponentLives --;
+		fightResult = 'GANASTE LA PARTIDA.';
+		opponentPetLives.textContent = `TIENE ${opponentLives} VIDAS.`;
 
 	}	else {
 
-		fightResult = 'PERDISTE LA PARTIDA.';
 		playerLives --;
+		fightResult = 'PERDISTE LA PARTIDA.';
+		playerPetLives.textContent = `TIENE ${playerLives} VIDAS.`;
 	}
+
+	checkLives();
+	createMessages();
+}
+
+function checkLives() {
 
 	if (playerLives == 0) {
 
@@ -124,26 +138,19 @@ function fight() {
 
 		fightFinalResult = 'GANASTE EL JUEGO.';
 	}
-
-	createMessages();
 }
 
 function createMessages() {
 
 	const attackRounds = document.createElement('p');
-
-	playerPetName.textContent = playerPet;
-	opponentPetName.textContent = opponentPet;
 		
 	attackRounds.textContent = `Tu mascota atacó con ${playerAttack} y Tu oponente atacó con ${opponentAttack} - ${fightResult}`;
 
-	playerPetLives.textContent = playerLives;
-	opponentPetLives.textContent = opponentLives;
 	finalResult.textContent = fightFinalResult;
 
 	if (playerPet) {
 		
-		messages.append(attackRounds);
+		rounds.append(attackRounds);
 	}
 }
 
