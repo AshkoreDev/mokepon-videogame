@@ -16,7 +16,7 @@ const playerPetName = document.getElementById('playerPetName');
 const playerPetLives = document.getElementById('playerPetLives');
 const opponentPetName = document.getElementById('opponentPetName');
 const opponentPetLives = document.getElementById('opponentPetLives');
-
+const finalResult = document.getElementById('finalResult');
 
 // Restart
 const restartBtn = document.getElementById('restartBtn');
