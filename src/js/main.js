@@ -154,9 +154,14 @@ function createMessages() {
 	}
 }
 
+function restartGame() {
+
+	setTimeout(() => location.reload(), 1000);
+}
 
 // Events
 choosePetBtn.addEventListener('click', choosePlayerPet);
 fireAttackBtn.addEventListener('click', fireAttack);
 waterAttackBtn.addEventListener('click', waterAttack);
 earthAttackBtn.addEventListener('click', earthAttack);
+restartBtn.addEventListener('click', restartGame);
