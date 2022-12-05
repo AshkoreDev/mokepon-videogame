@@ -1,4 +1,6 @@
 import './nodes.js';
+import './mokepon.js';
+
 
 // Variables
 let playerPet;
@@ -9,25 +11,7 @@ let fightResult;
 let playerLives = 3;
 let opponentLives = 3;
 let fightFinalResult;
-let mokepones = [];
 
-// Class
-class Mokepon() {
-
-	constructor(name, image) {
-		this.name = name;
-		this.image = image;
-	}
-
-}
-
-let capipepo = new Mokepon('', './../images/capipepo.png');
-let hipodoge = new Mokepon('HIPODOGE', './../images/hipodoge.png');
-let ratigueya = new Mokepon('RATIGUEYA', './../images/ratigueya.png');
-
-mokepones.push(capipepo);
-mokepones.push(hipodoge);
-mokepones.push(ratigueya);
 
 // Functions
 function random(min, max) {
