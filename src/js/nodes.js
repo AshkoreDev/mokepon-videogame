@@ -1,4 +1,5 @@
 // Choose pet
+const choosePet = document.getElementById('choosePet');
 const capipepoPet = document.getElementById('capipepoPet');
 const hipodogePet = document.getElementById('hipodogePet');
 const ratigueyaPet = document.getElementById('ratigueyaPet');

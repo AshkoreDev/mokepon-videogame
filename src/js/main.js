@@ -1,5 +1,5 @@
 import './nodes.js';
-import './mokepon.js';
+import { Mokepon, mokepones } from './mokepon.js';
 
 
 // Variables
@@ -11,9 +11,37 @@ let fightResult;
 let playerLives = 3;
 let opponentLives = 3;
 let fightFinalResult;
-
+let mokeponOption;
 
 // Functions
+function startGame() {
+
+	const mokeponCards = document.createDocumentFragment();
+	mokepones.forEach(mokepon => {
+
+		const card = document.createElement('article');
+		const cardName = document.createElement('label');
+		const cardOption = document.createElement('input');
+		const cardImage = document.createElement('img');
+
+		cardName.textContent = mokepon.name;
+		cardName.setAttribute('for', mokepon.name + 'Pet');
+		cardOption.setAttribute('type', 'radio');
+		cardOption.setAttribute('name', 'pets');
+		cardOption.setAttribute('id', mokepon.name + 'Pet');
+		cardImage.setAttribute('src', mokepon.image);
+		cardImage.setAttribute('alt', mokepon.name + ' photo');
+		cardImage.setAttribute('width', '100');
+		cardImage.setAttribute('height', '100');
+
+		card.append(cardName, cardOption, cardImage);
+		mokeponCards.append(card);
+	});
+
+	choosePet.appendChild(mokeponCards);
+}
+
+
 function random(min, max) {
 
 	return Math.floor(Math.random() * (max - min + 1) + min);
@@ -163,6 +191,7 @@ function restartGame() {
 }
 
 // Events
+window.addEventListener('load', startGame);
 choosePetBtn.addEventListener('click', choosePlayerPet);
 fireAttackBtn.addEventListener('click', fireAttack);
 waterAttackBtn.addEventListener('click', waterAttack);
