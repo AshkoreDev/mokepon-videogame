@@ -13,6 +13,8 @@ let opponentLives = 3;
 let fightFinalResult;
 let playerAttack = [];
 let opponentAttacks = [];
+let figthAttackPlayer;
+let figthAttackOpponent;
 // let mokeponOption;
 
 // Functions
@@ -115,30 +117,54 @@ function chooseOpponentAttack() {
 		opponentAttacks.push('TIERRA');
 	}
 	console.log(opponentAttacks);
-	fight();
+	
+	startFight();
+}
+
+function startFight() {
+
+	if (playerAttack.length === 5) {
+
+		fight();
+	}
+}
+
+function bothOpponents(player, opponent, fightResult) {
+
+	figthAttackPlayer = playerAttack[player];
+	figthAttackOpponent = opponentAttacks[opponent];
+	
+	createMessages(fightResult);
 }
 
 function fight() {
 
-	if (playerAttack == opponentAttacks)	{
-
-		fightResult = 'HUBO EMPATE.';
-
-	}	else if(playerAttack == 'FUEGO' && opponentAttacks == 'TIERRA' || playerAttack == 'AGUA' && opponentAttacks == 'FUEGO' || playerAttack == 'TIERRA' && opponentAttacks == 'AGUA') {
+	for (let i = 0; i < playerAttack.length;  i++) {
 		
-		opponentLives --;
-		fightResult = 'GANASTE LA PARTIDA.';
-		opponentPetLives.textContent = `TIENE ${opponentLives} VIDAS.`;
+		if (playerAttack[i] === opponentAttacks[i]) {
 
-	}	else {
+			fightResult = 'HUBO EMPATE.';
+			bothOpponents(i,i,fightResult);
 
-		playerLives --;
-		fightResult = 'PERDISTE LA PARTIDA.';
-		playerPetLives.textContent = `TIENE ${playerLives} VIDAS.`;
+		} else if(playerAttack[i] === 'FUEGO' && opponentAttacks[i] === 'TIERRA' || playerAttack[i] === 'AGUA' && opponentAttacks[i] === 'FUEGO' || playerAttack[i] === 'TIERRA' && opponentAttacks[i] === 'AGUA') {
+
+			fightResult = 'GANASTE LA PARTIDA.';
+			bothOpponents(i,i,fightResult);
+			opponentLives --; 	
+			opponentPetLives.textContent = `TIENE ${opponentLives} VIDAS.`;
+
+		} else {
+	
+			fightResult = 'PERDISTE LA PARTIDA.';
+			bothOpponents(i,i,fightResult);
+			playerLives --;
+			playerPetLives.textContent = `TIENE ${playerLives} VIDAS.`;
+		}
 	}
+	
 
-	checkLives();
-	createMessages();
+	// checkLives();
+	
 }
 
 function checkLives() {
@@ -153,11 +179,11 @@ function checkLives() {
 	}
 }
 
-function createMessages() {
+function createMessages(fightResult) {
 
 	const attackRounds = document.createElement('p');
 		
-	attackRounds.textContent = `Tu mascota atacó con ${playerAttack} y Tu oponente atacó con ${opponentAttack} - ${fightResult}`;
+	attackRounds.textContent = `Tu mascota atacó con ${figthAttackPlayer} y Tu oponente atacó con ${figthAttackOpponent} - ${fightResult}`;
 
 	finalResult.textContent = fightFinalResult;
 
