@@ -25,7 +25,6 @@ function random(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-console.log();
 function choosePlayerPet() {
 
 	if (capipepoPet.checked) {
@@ -50,20 +49,8 @@ function choosePlayerPet() {
 
 function chooseOpponentPet() {
 
-	let opponentPetRandom = random(1,3);
-
-	if (opponentPetRandom == 1) {
-
-		opponentPet = mokepones[0].name;
-
-	}	else if(opponentPetRandom == 2) {
-
-		opponentPet = mokepones[1].name;
-
-	}	else {
-
-		opponentPet = mokepones[2].name;
-	}
+	let opponentPetRandom = random(0,mokepones.length - 1);
+	opponentPet = mokepones[opponentPetRandom].name;
 
 	if (playerPet) {
 		
