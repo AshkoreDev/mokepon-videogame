@@ -12,6 +12,7 @@ const fireAttackBtn = document.getElementById('fireAttackBtn');
 const waterAttackBtn = document.getElementById('waterAttackBtn');
 const earthAttackBtn = document.getElementById('earthAttackBtn');
 
+
 // Messages
 const messages = document.getElementById('messages');
 const playerPetName = document.getElementById('playerPetName');

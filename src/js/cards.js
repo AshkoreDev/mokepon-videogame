@@ -1,4 +1,3 @@
-// import { playerPet } from './main.js';
 
 function cardsRender(mokepones) {
 
@@ -45,8 +44,10 @@ function buttonsRender(mokepones, pet) {
 
 				attackButton.textContent = attack.name;
 				attackButton.setAttribute('id', attack.id);
+				attackButton.setAttribute('class', 'attackButtons');
 
 				mokeponButtons.append(attackButton);
+
 			});
 		}		
 	});

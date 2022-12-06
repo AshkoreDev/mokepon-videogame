@@ -6,12 +6,13 @@ import { cardsRender, buttonsRender } from './cards.js';
 // Variables
 let playerPet;
 let opponentPet;
-let playerAttack;
+// let playerAttack;
 let opponentAttack;
 let fightResult;
 let playerLives = 3;
 let opponentLives = 3;
 let fightFinalResult;
+let playerAttack = [];
 // let mokeponOption;
 
 // Functions
@@ -58,27 +59,62 @@ function chooseOpponentPet() {
 		opponentPetName.textContent = `TU OPONENTE ${opponentPet}`;
 		playerPetLives.textContent = `TIENE ${playerLives} VIDAS.`;
 		opponentPetLives.textContent = `TIENE ${opponentLives} VIDAS.`;
+
+		buttonsRender(mokepones, playerPet);
+		let attackButtons = document.querySelectorAll('.attackButtons');
+		attackSecuence(attackButtons);
+		// fireAttackBtn.addEventListener('click', fireAttack);
+		// waterAttackBtn.addEventListener('click', waterAttack);
+		// earthAttackBtn.addEventListener('click', earthAttack);
+		console.log(attackButtons);
 	}
-	buttonsRender(mokepones, playerPet);
 }
 
-function fireAttack() {
+function attackSecuence(attackButtons) {
 
-	playerAttack = 'FUEGO';
-	chooseOpponentAttack();
+	attackButtons.forEach(button => {
+
+		button.addEventListener('click', e => {
+
+			if (e.target.textContent === 'FUEGO') {
+				
+				playerAttack.push('FUEGO');
+				console.log(playerAttack);
+				// agregar color de seleccionado
+
+			} else if(e.target.textContent === 'AGUA') {
+
+				playerAttack.push('AGUA');
+				console.log(playerAttack);
+				// agregar color de seleccionado
+
+			} else {
+				
+				playerAttack.push('TIERRA');
+				console.log(playerAttack);
+				// agregar color de seleccionado
+			}
+		});
+	});
 }
 
-function waterAttack() {
+// function fireAttack() {
 
-	playerAttack = 'AGUA';
-	chooseOpponentAttack();
-}
+// 	playerAttack = 'FUEGO';
+// 	chooseOpponentAttack();
+// }
 
-function earthAttack() {
+// function waterAttack() {
 
-	playerAttack = 'TIERRA';
-	chooseOpponentAttack();
-}
+// 	playerAttack = 'AGUA';
+// 	chooseOpponentAttack();
+// }
+
+// function earthAttack() {
+
+// 	playerAttack = 'TIERRA';
+// 	chooseOpponentAttack();
+// }
 
 function chooseOpponentAttack() {
 
@@ -157,9 +193,6 @@ function restartGame() {
 // Events
 window.addEventListener('load', startGame);
 choosePetBtn.addEventListener('click', choosePlayerPet);
-// fireAttackBtn.addEventListener('click', fireAttack);
-// waterAttackBtn.addEventListener('click', waterAttack);
-// earthAttackBtn.addEventListener('click', earthAttack);
 restartBtn.addEventListener('click', restartGame);
 
 export { playerPet };
