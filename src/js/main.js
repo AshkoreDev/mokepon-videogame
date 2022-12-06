@@ -1,6 +1,6 @@
 import './nodes.js';
 import { Mokepon, mokepones } from './mokepon.js';
-import { cardsRender } from './cards.js';
+import { cardsRender, buttonsRender } from './cards.js';
 
 
 // Variables
@@ -59,7 +59,7 @@ function chooseOpponentPet() {
 		playerPetLives.textContent = `TIENE ${playerLives} VIDAS.`;
 		opponentPetLives.textContent = `TIENE ${opponentLives} VIDAS.`;
 	}
-	
+	buttonsRender(mokepones, playerPet);
 }
 
 function fireAttack() {
@@ -157,7 +157,9 @@ function restartGame() {
 // Events
 window.addEventListener('load', startGame);
 choosePetBtn.addEventListener('click', choosePlayerPet);
-fireAttackBtn.addEventListener('click', fireAttack);
-waterAttackBtn.addEventListener('click', waterAttack);
-earthAttackBtn.addEventListener('click', earthAttack);
+// fireAttackBtn.addEventListener('click', fireAttack);
+// waterAttackBtn.addEventListener('click', waterAttack);
+// earthAttackBtn.addEventListener('click', earthAttack);
 restartBtn.addEventListener('click', restartGame);
+
+export { playerPet };

@@ -1,3 +1,4 @@
+// import { playerPet } from './main.js';
 
 function cardsRender(mokepones) {
 
@@ -26,4 +27,31 @@ function cardsRender(mokepones) {
 	choosePetCards.append(mokeponCards);
 }
 
-export  { cardsRender };
+function buttonsRender(mokepones, pet) {
+
+	const mokeponButtons = document.createDocumentFragment();
+	let attacks;
+
+	mokepones.forEach(mokepon => {
+
+		if (pet === mokepon.name) {
+
+			attacks = mokepon.attacks;
+			
+			attacks.forEach(attack => {
+				
+				const card = document.createElement('article');
+				const attackButton = document.createElement('button');
+
+				attackButton.textContent = attack.name;
+				attackButton.setAttribute('id', attack.id);
+
+				mokeponButtons.append(attackButton);
+			});
+		}		
+	});
+
+	chooseAttack.append(mokeponButtons);
+}
+
+export  { cardsRender, buttonsRender };

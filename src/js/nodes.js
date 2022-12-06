@@ -7,6 +7,7 @@ const ratigueyaPet = document.getElementById('ratigueyaPet');
 const choosePetBtn = document.getElementById('choosePetBtn');
 
 // Choose attack
+const chooseAttack = document.getElementById('chooseAttack');
 const fireAttackBtn = document.getElementById('fireAttackBtn');
 const waterAttackBtn = document.getElementById('waterAttackBtn');
 const earthAttackBtn = document.getElementById('earthAttackBtn');
