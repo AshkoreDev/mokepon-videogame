@@ -12,7 +12,7 @@ let fightResult;
 let playerLives = 3;
 let opponentLives = 3;
 let fightFinalResult;
-let mokeponOption;
+// let mokeponOption;
 
 // Functions
 function startGame() {
@@ -20,27 +20,25 @@ function startGame() {
 	cardsRender(mokepones);
 }
 
-
 function random(min, max) {
 
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+console.log();
 function choosePlayerPet() {
-
-	// const playerPetName = document.createElement('p');
 
 	if (capipepoPet.checked) {
 
-		playerPet = 'CAPIPEPO';
+		playerPet = mokepones[0].name;
 
 	}	else if(hipodogePet.checked) {
 
-		playerPet = 'HIPODOGE';
+		playerPet = mokepones[1].name;
 
 	}	else if(ratigueyaPet.checked) {
 
-		playerPet = 'RATIGUEYA';
+		playerPet = mokepones[2].name;
 
 	}	else {
 
@@ -56,15 +54,15 @@ function chooseOpponentPet() {
 
 	if (opponentPetRandom == 1) {
 
-		opponentPet = 'CAPIPEPO';
+		opponentPet = mokepones[0].name;
 
 	}	else if(opponentPetRandom == 2) {
 
-		opponentPet = 'HIPODOGE';
+		opponentPet = mokepones[1].name;
 
 	}	else {
 
-		opponentPet = 'RATIGUEYA';
+		opponentPet = mokepones[2].name;
 	}
 
 	if (playerPet) {

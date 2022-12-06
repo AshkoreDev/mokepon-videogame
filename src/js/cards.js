@@ -1,13 +1,7 @@
 
 function cardsRender(mokepones) {
 
-	const mokeponCards = document.createDocumentFragment();
-
-	// const selectBtn = document.createElement('button');
-	// selectBtn.textContent = 'Seleccionar';
-	// selectBtn.setAttribute('type', 'button');
-	// selectBtn.setAttribute('id', 'choosePetBtn');
-	
+	const mokeponCards = document.createDocumentFragment();	
 	mokepones.forEach(mokepon => {
 
 		const card = document.createElement('article');
@@ -29,7 +23,7 @@ function cardsRender(mokepones) {
 		mokeponCards.append(card);
 	});
 
-	choosePet.insertBefore(mokeponCards, choosePetBtn);
+	choosePetCards.append(mokeponCards);
 }
 
 export  { cardsRender };
