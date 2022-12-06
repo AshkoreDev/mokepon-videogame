@@ -6,13 +6,13 @@ import { cardsRender, buttonsRender } from './cards.js';
 // Variables
 let playerPet;
 let opponentPet;
-// let playerAttack;
 let opponentAttack;
 let fightResult;
 let playerLives = 3;
 let opponentLives = 3;
 let fightFinalResult;
 let playerAttack = [];
+let opponentAttacks = [];
 // let mokeponOption;
 
 // Functions
@@ -52,6 +52,7 @@ function chooseOpponentPet() {
 
 	let opponentPetRandom = random(0,mokepones.length - 1);
 	opponentPet = mokepones[opponentPetRandom].name;
+	opponentAttack = mokepones[opponentPetRandom].attacks;
 
 	if (playerPet) {
 		
@@ -63,10 +64,7 @@ function chooseOpponentPet() {
 		buttonsRender(mokepones, playerPet);
 		let attackButtons = document.querySelectorAll('.attackButtons');
 		attackSecuence(attackButtons);
-		// fireAttackBtn.addEventListener('click', fireAttack);
-		// waterAttackBtn.addEventListener('click', waterAttack);
-		// earthAttackBtn.addEventListener('click', earthAttack);
-		console.log(attackButtons);
+		// console.log(attackButtons);
 	}
 }
 
@@ -79,70 +77,54 @@ function attackSecuence(attackButtons) {
 			if (e.target.textContent === 'FUEGO') {
 				
 				playerAttack.push('FUEGO');
-				console.log(playerAttack);
+				// console.log(playerAttack);
 				// agregar color de seleccionado
 
 			} else if(e.target.textContent === 'AGUA') {
 
 				playerAttack.push('AGUA');
-				console.log(playerAttack);
+				// console.log(playerAttack);
 				// agregar color de seleccionado
 
 			} else {
 				
 				playerAttack.push('TIERRA');
-				console.log(playerAttack);
+				// console.log(playerAttack);
 				// agregar color de seleccionado
 			}
+
+			chooseOpponentAttack();
 		});
 	});
 }
 
-// function fireAttack() {
-
-// 	playerAttack = 'FUEGO';
-// 	chooseOpponentAttack();
-// }
-
-// function waterAttack() {
-
-// 	playerAttack = 'AGUA';
-// 	chooseOpponentAttack();
-// }
-
-// function earthAttack() {
-
-// 	playerAttack = 'TIERRA';
-// 	chooseOpponentAttack();
-// }
-
 function chooseOpponentAttack() {
 
-	let opponentAttackRandom = random(1,3);
+	let opponentAttackRandom = random(0,opponentAttack.length - 1);
 
-	if (opponentAttackRandom == 1) {
+	if (opponentAttackRandom == 0 || opponentAttackRandom == 1) {
 
-		 opponentAttack = 'FUEGO';
+		opponentAttacks.push('FUEGO');
 
-	}	else if(opponentAttackRandom == 2) {
+	}	else if(opponentAttackRandom == 3 || opponentAttackRandom == 4) {
 
-		opponentAttack = 'AGUA';
+		opponentAttacks.push('AGUA');
 
 	}	else {
 
-		opponentAttack = 'TIERRA';
+		opponentAttacks.push('TIERRA');
 	}
-
+	console.log(opponentAttacks);
 	fight();
 }
 
 function fight() {
 
-	if (playerAttack == opponentAttack)	{
+	if (playerAttack == opponentAttacks)	{
 
 		fightResult = 'HUBO EMPATE.';
 
-	}	else if(playerAttack == 'FUEGO' && opponentAttack == 'TIERRA' || playerAttack == 'AGUA' && opponentAttack == 'FUEGO' || playerAttack == 'TIERRA' && opponentAttack == 'AGUA') {
+	}	else if(playerAttack == 'FUEGO' && opponentAttacks == 'TIERRA' || playerAttack == 'AGUA' && opponentAttacks == 'FUEGO' || playerAttack == 'TIERRA' && opponentAttacks == 'AGUA') {
 		
 		opponentLives --;
 		fightResult = 'GANASTE LA PARTIDA.';
