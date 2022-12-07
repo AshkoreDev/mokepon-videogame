@@ -9,7 +9,15 @@ class Mokepon {
 		this.name = name;
 		this.image = image;
 		this.attacks = [];
+		this.x = 20;
+		this.y = 30;
+		this.width = 80;
+		this.height = 80;
+		this.imageMap = new Image();
+		this.imageMap.src = image;
 	}
+
+
 }
 
 let capipepo = new Mokepon('capipepo', './src/images/capipepo.png');

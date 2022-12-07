@@ -199,16 +199,30 @@ function restartGame() {
 
 
 // canvas
+let lienzo = canvasMap.getContext('2d');
 function showMap() {
 
-	let lienzo = canvasMap.getContext('2d');
-	let capipepoImage = new Image();
+	// let lienzo = canvasMap.getContext('2d');
+	// let capipepoImage = new Image();
 
-	capipepoImage.src = mokepones[0].image;
-	lienzo.drawImage(capipepoImage,20,40,100,100);
+	// capipepoImage.src = mokepones[0].image;
+	// lienzo.drawImage(capipepoImage,20,40,100,100);
 }
 
+let dos = mokepones[0];
+
+function paintMokepon() {
+	lienzo.clearRect(0,0,canvasMap.width,canvasMap.height);
+	lienzo.drawImage(dos.imageMap,dos.x,dos.y,dos.width,dos.height);
+}
+
+function moveUpMokepon() {
+
+	dos.x = dos.x + 5;
+	paintMokepon();
+}
 // Events
 window.addEventListener('load', startGame);
 choosePetBtn.addEventListener('click', choosePlayerPet);
 restartBtn.addEventListener('click', restartGame);
+moveUpBtn.addEventListener('click', moveUpMokepon);
