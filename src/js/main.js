@@ -61,9 +61,9 @@ function chooseOpponentPet() {
 		opponentPetName.textContent = `TU OPONENTE ${opponentPet}`;
 
 		buttonsRender(mokepones, playerPet);
+
 		let attackButtons = document.querySelectorAll('.attackButtons');
 		attackSecuence(attackButtons);
-		// console.log(attackButtons);
 	}
 }
 
@@ -76,19 +76,16 @@ function attackSecuence(attackButtons) {
 			if (e.target.textContent === 'FUEGO') {
 				
 				playerAttack.push('FUEGO');
-				// console.log(playerAttack);
 				// agregar color de seleccionado
 
 			} else if(e.target.textContent === 'AGUA') {
 
 				playerAttack.push('AGUA');
-				// console.log(playerAttack);
 				// agregar color de seleccionado
 
 			} else {
 				
 				playerAttack.push('TIERRA');
-				// console.log(playerAttack);
 				// agregar color de seleccionado
 			}
 
@@ -113,7 +110,6 @@ function chooseOpponentAttack() {
 
 		opponentAttacks.push('TIERRA');
 	}
-	console.log(opponentAttacks);
 	
 	startFight();
 }
