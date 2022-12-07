@@ -15,6 +15,8 @@ class Mokepon {
 		this.height = 80;
 		this.imageMap = new Image();
 		this.imageMap.src = image;
+		this.speedX = 0;
+		this.speedY = 0;
 	}
 
 

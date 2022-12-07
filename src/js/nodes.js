@@ -2,6 +2,10 @@
 const map = document.getElementById('map');
 const canvasMap = document.getElementById('canvasMap');
 const moveUpBtn = document.getElementById('moveUpBtn');
+const moveRightBtn = document.getElementById('moveRightBtn');
+const moveDownBtn = document.getElementById('moveDownBtn');
+const moveLeftBtn = document.getElementById('moveLeftBtn');
+
 
 // Choose pet
 const choosePet = document.getElementById('choosePet');

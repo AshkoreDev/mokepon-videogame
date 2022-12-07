@@ -15,10 +15,12 @@ let figthAttackPlayer;
 let figthAttackOpponent;
 let roundsPlayer = 0;
 let roundsOpponent = 0;
+let moveInterval;
 
 const capipepoMok = mokepones[0];
 const hipodogeMok = mokepones[1];
 const ratigueyaMok = mokepones[2];
+
 
 // Functions
 function startGame() {
@@ -207,27 +209,55 @@ let lienzo = canvasMap.getContext('2d');
 
 function showMap() {
 
-	// let lienzo = canvasMap.getContext('2d');
-	// let capipepoImage = new Image();
-
-	// capipepoImage.src = capipepoMok.image;
-	// lienzo.drawImage(capipepoImage,20,40,100,100);
+	moveInterval = setInterval(paintMokepon, 50);
 }
 
 function paintMokepon() {
 
+	capipepoMok.x = capipepoMok.x + capipepoMok.speedX;
+	capipepoMok.y = capipepoMok.y + capipepoMok.speedY;
+	
 	lienzo.clearRect(0,0,canvasMap.width,canvasMap.height);
 	lienzo.drawImage(capipepoMok.imageMap,capipepoMok.x,capipepoMok.y,capipepoMok.width,capipepoMok.height);
 }
 
 function moveUpMokepon() {
 
-	capipepoMok.x = capipepoMok.x + 5;
-	paintMokepon();
+	capipepoMok.speedY = -5;
+}
+
+function moveRightMokepon() {
+
+	capipepoMok.speedX = 5;
+}
+
+function moveDownMokepon() {
+
+	capipepoMok.speedY = 5;
+}
+
+function moveLeftMokepon() {
+
+	capipepoMok.speedX = -5;
+}
+
+function stopMoveMokepon() {
+
+	capipepoMok.speedX = 0;
+	capipepoMok.speedY = 0;
 }
 
 // Events
 window.addEventListener('load', startGame);
 choosePetBtn.addEventListener('click', choosePlayerPet);
 restartBtn.addEventListener('click', restartGame);
-moveUpBtn.addEventListener('click', moveUpMokepon);
+
+moveUpBtn.addEventListener('mousedown', moveUpMokepon);
+moveRightBtn.addEventListener('mousedown', moveRightMokepon);
+moveDownBtn.addEventListener('mousedown', moveDownMokepon);
+moveLeftBtn.addEventListener('mousedown', moveLeftMokepon);
+
+moveUpBtn.addEventListener('mouseup', stopMoveMokepon);
+moveRightBtn.addEventListener('mouseup', stopMoveMokepon);
+moveDownBtn.addEventListener('mouseup', stopMoveMokepon);
+moveLeftBtn.addEventListener('mouseup', stopMoveMokepon);
