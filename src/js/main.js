@@ -20,6 +20,7 @@ let roundsOpponent = 0;
 function startGame() {
 
 	cardsRender(mokepones);
+	showMap();
 }
 
 function random(min, max) {
@@ -196,9 +197,18 @@ function restartGame() {
 	setTimeout(() => location.reload(), 1000);
 }
 
+
+// canvas
+function showMap() {
+
+	let lienzo = canvasMap.getContext('2d');
+	let capipepoImage = new Image();
+
+	capipepoImage.src = mokepones[0].image;
+	lienzo.drawImage(capipepoImage,20,40,100,100);
+}
+
 // Events
 window.addEventListener('load', startGame);
 choosePetBtn.addEventListener('click', choosePlayerPet);
 restartBtn.addEventListener('click', restartGame);
-
-export { playerPet };

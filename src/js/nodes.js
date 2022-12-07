@@ -1,3 +1,7 @@
+// Canvas
+const map = document.getElementById('map');
+const canvasMap = document.getElementById('canvasMap');
+
 // Choose pet
 const choosePet = document.getElementById('choosePet');
 const choosePetCards = document.getElementById('choosePetCards');
@@ -8,10 +12,6 @@ const choosePetBtn = document.getElementById('choosePetBtn');
 
 // Choose attack
 const chooseAttack = document.getElementById('chooseAttack');
-// const fireAttackBtn = document.getElementById('fireAttackBtn');
-// const waterAttackBtn = document.getElementById('waterAttackBtn');
-// const earthAttackBtn = document.getElementById('earthAttackBtn');
-
 
 // Messages
 const messages = document.getElementById('messages');
