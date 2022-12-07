@@ -8,14 +8,13 @@ let playerPet;
 let opponentPet;
 let opponentAttack;
 let fightResult;
-let playerLives = 3;
-let opponentLives = 3;
 let fightFinalResult;
 let playerAttack = [];
 let opponentAttacks = [];
 let figthAttackPlayer;
 let figthAttackOpponent;
-// let mokeponOption;
+let roundsPlayer = 0;
+let roundsOpponent = 0;
 
 // Functions
 function startGame() {
@@ -60,8 +59,6 @@ function chooseOpponentPet() {
 		
 		playerPetName.textContent = `TU MASCOTA ${playerPet}`;
 		opponentPetName.textContent = `TU OPONENTE ${opponentPet}`;
-		playerPetLives.textContent = `TIENE ${playerLives} VIDAS.`;
-		opponentPetLives.textContent = `TIENE ${opponentLives} VIDAS.`;
 
 		buttonsRender(mokepones, playerPet);
 		let attackButtons = document.querySelectorAll('.attackButtons');
@@ -150,32 +147,39 @@ function fight() {
 
 			fightResult = 'GANASTE LA PARTIDA.';
 			bothOpponents(i,i,fightResult);
-			opponentLives --; 	
-			opponentPetLives.textContent = `TIENE ${opponentLives} VIDAS.`;
+			roundsPlayer++;	
 
 		} else {
 	
 			fightResult = 'PERDISTE LA PARTIDA.';
 			bothOpponents(i,i,fightResult);
-			playerLives --;
-			playerPetLives.textContent = `TIENE ${playerLives} VIDAS.`;
+			roundsOpponent++;
 		}
 	}
 	
-
-	// checkLives();
-	
+	checkRounds();
 }
 
-function checkLives() {
+function checkRounds() {
 
-	if (playerLives == 0) {
+	if (roundsPlayer === roundsOpponent) {
+		
+		fightFinalResult = 'JUEGO EMPATADO.';
 
-		fightFinalResult = 'PERDISTE EL JUEGO.';
-
-	} else if (opponentLives == 0) {
+	} else	if (roundsPlayer > roundsOpponent) {
 
 		fightFinalResult = 'GANASTE EL JUEGO.';
+
+	} else {
+
+		fightFinalResult = 'PERDISTE EL JUEGO.';
+	}
+
+	finalResult.textContent = fightFinalResult;
+	if (roundsPlayer >= 0 && roundsOpponent >= 0) {
+		
+		playerPetLives.textContent = `GANASTE ${roundsPlayer} ROUNDS.`;
+		opponentPetLives.textContent = `TU OPONENTE GANÓ ${roundsOpponent} ROUNDS.`;
 	}
 }
 
@@ -184,8 +188,6 @@ function createMessages(fightResult) {
 	const attackRounds = document.createElement('p');
 		
 	attackRounds.textContent = `Tu mascota atacó con ${figthAttackPlayer} y Tu oponente atacó con ${figthAttackOpponent} - ${fightResult}`;
-
-	finalResult.textContent = fightFinalResult;
 
 	if (playerPet) {
 		
