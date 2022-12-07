@@ -16,6 +16,10 @@ let figthAttackOpponent;
 let roundsPlayer = 0;
 let roundsOpponent = 0;
 
+const capipepoMok = mokepones[0];
+const hipodogeMok = mokepones[1];
+const ratigueyaMok = mokepones[2];
+
 // Functions
 function startGame() {
 
@@ -32,15 +36,15 @@ function choosePlayerPet() {
 
 	if (capipepoPet.checked) {
 
-		playerPet = mokepones[0].name;
+		playerPet = capipepoMok.name;
 
 	}	else if(hipodogePet.checked) {
 
-		playerPet = mokepones[1].name;
+		playerPet = hipodogeMok.name;
 
 	}	else if(ratigueyaPet.checked) {
 
-		playerPet = mokepones[2].name;
+		playerPet = ratigueyaMok.name;
 
 	}	else {
 
@@ -200,27 +204,28 @@ function restartGame() {
 
 // canvas
 let lienzo = canvasMap.getContext('2d');
+
 function showMap() {
 
 	// let lienzo = canvasMap.getContext('2d');
 	// let capipepoImage = new Image();
 
-	// capipepoImage.src = mokepones[0].image;
+	// capipepoImage.src = capipepoMok.image;
 	// lienzo.drawImage(capipepoImage,20,40,100,100);
 }
 
-let dos = mokepones[0];
-
 function paintMokepon() {
+
 	lienzo.clearRect(0,0,canvasMap.width,canvasMap.height);
-	lienzo.drawImage(dos.imageMap,dos.x,dos.y,dos.width,dos.height);
+	lienzo.drawImage(capipepoMok.imageMap,capipepoMok.x,capipepoMok.y,capipepoMok.width,capipepoMok.height);
 }
 
 function moveUpMokepon() {
 
-	dos.x = dos.x + 5;
+	capipepoMok.x = capipepoMok.x + 5;
 	paintMokepon();
 }
+
 // Events
 window.addEventListener('load', startGame);
 choosePetBtn.addEventListener('click', choosePlayerPet);
