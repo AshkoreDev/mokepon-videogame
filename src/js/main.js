@@ -247,6 +247,26 @@ function stopMoveMokepon() {
 	capipepoMok.speedY = 0;
 }
 
+function keyPressMove(e) {
+
+	if (e.key == 'ArrowUp') {
+
+		moveUpMokepon();
+
+	} else if(e.key == 'ArrowRight') {
+
+		moveRightMokepon();
+
+	} else if(e.key == 'ArrowDown') {
+
+		moveDownMokepon();
+
+	} else if(e.key == 'ArrowLeft') {
+
+		moveLeftMokepon();
+	}
+}
+
 // Events
 window.addEventListener('load', startGame);
 choosePetBtn.addEventListener('click', choosePlayerPet);
@@ -256,6 +276,9 @@ moveUpBtn.addEventListener('mousedown', moveUpMokepon);
 moveRightBtn.addEventListener('mousedown', moveRightMokepon);
 moveDownBtn.addEventListener('mousedown', moveDownMokepon);
 moveLeftBtn.addEventListener('mousedown', moveLeftMokepon);
+
+window.addEventListener('keydown', keyPressMove);
+window.addEventListener('keyup', stopMoveMokepon);
 
 moveUpBtn.addEventListener('mouseup', stopMoveMokepon);
 moveRightBtn.addEventListener('mouseup', stopMoveMokepon);
