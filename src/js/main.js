@@ -15,10 +15,11 @@ let figthAttackPlayer;
 let figthAttackOpponent;
 let roundsPlayer = 0;
 let roundsOpponent = 0;
+let mokeponPlayer;
 
-const capipepoMok = mokepones[0];
-const hipodogeMok = mokepones[1];
-const ratigueyaMok = mokepones[2];
+// const mokeponPlayer = mokepones[0];
+// const mokeponPlayer = mokepones[1];
+// const mokeponPlayer = mokepones[2];
 
 
 // Functions
@@ -32,25 +33,36 @@ function random(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function getMokeponObject() {
+
+	for (let i = 0; i < mokepones.length; i++) {
+		
+		if (playerPet === mokepones[i].name) {
+			return mokepones[i];
+		}
+	}
+}
+
 function choosePlayerPet() {
 
 	if (capipepoPet.checked) {
 
-		playerPet = capipepoMok.name;
+		playerPet = mokepones[0].name;
 
 	}	else if(hipodogePet.checked) {
 
-		playerPet = hipodogeMok.name;
+		playerPet = mokepones[1].name;
 
 	}	else if(ratigueyaPet.checked) {
 
-		playerPet = ratigueyaMok.name;
+		playerPet = mokepones[2].name;
 
 	}	else {
 
 		console.log('Debes seleccionar una mascota.');
 	}
-
+	
+	mokeponPlayer = getMokeponObject();
 	chooseOpponentPet();
 	startMap();
 }
@@ -207,7 +219,6 @@ function restartGame() {
 let lienzo = canvasMap.getContext('2d');
 let moveInterval;
 let backgroundMap;
-let mokeponPlayer;
 
 function startMap() {
 
@@ -217,8 +228,6 @@ function startMap() {
 
 	backgroundMap = new Image();
 	backgroundMap.src = './src/images/map.png';
-
-	mokeponPlayer = getMokeponObject();
 }
 
 function paintMap() {
@@ -229,16 +238,6 @@ function paintMap() {
 	lienzo.clearRect(0,0,canvasMap.width,canvasMap.height);
 	lienzo.drawImage(backgroundMap,0,0,canvasMap.width,canvasMap.height);
 	lienzo.drawImage(mokeponPlayer.imageMap,mokeponPlayer.x,mokeponPlayer.y,mokeponPlayer.width,mokeponPlayer.height);
-}
-
-function getMokeponObject() {
-
-	for (let i = 0; i < mokepones.length; i++) {
-		
-		if (playerPet === mokepones[i].name) {
-			return mokepones[i];
-		}
-	}
 }
 
 function moveUpMokepon() {
