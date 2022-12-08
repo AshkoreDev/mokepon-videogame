@@ -18,8 +18,6 @@ class Mokepon {
 		this.speedX = 0;
 		this.speedY = 0;
 	}
-
-
 }
 
 let capipepo = new Mokepon('capipepo', './src/images/capipepo.png');

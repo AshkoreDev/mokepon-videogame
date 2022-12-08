@@ -25,7 +25,6 @@ const ratigueyaMok = mokepones[2];
 function startGame() {
 
 	cardsRender(mokepones);
-	startMap();
 }
 
 function random(min, max) {
@@ -53,6 +52,7 @@ function choosePlayerPet() {
 	}
 
 	chooseOpponentPet();
+	startMap();
 }
 
 function chooseOpponentPet() {
@@ -207,6 +207,7 @@ function restartGame() {
 let lienzo = canvasMap.getContext('2d');
 let moveInterval;
 let backgroundMap;
+let mokeponPlayer;
 
 function startMap() {
 
@@ -215,43 +216,55 @@ function startMap() {
 	moveInterval = setInterval(paintMap, 50);
 
 	backgroundMap = new Image();
-	backgroundMap.src = './src/images/map.png'; 
+	backgroundMap.src = './src/images/map.png';
+
+	mokeponPlayer = getMokeponObject();
 }
 
 function paintMap() {
 
-	capipepoMok.x = capipepoMok.x + capipepoMok.speedX;
-	capipepoMok.y = capipepoMok.y + capipepoMok.speedY;
+	mokeponPlayer.x = mokeponPlayer.x + mokeponPlayer.speedX;
+	mokeponPlayer.y = mokeponPlayer.y + mokeponPlayer.speedY;
 	
 	lienzo.clearRect(0,0,canvasMap.width,canvasMap.height);
 	lienzo.drawImage(backgroundMap,0,0,canvasMap.width,canvasMap.height);
-	lienzo.drawImage(capipepoMok.imageMap,capipepoMok.x,capipepoMok.y,capipepoMok.width,capipepoMok.height);
+	lienzo.drawImage(mokeponPlayer.imageMap,mokeponPlayer.x,mokeponPlayer.y,mokeponPlayer.width,mokeponPlayer.height);
+}
+
+function getMokeponObject() {
+
+	for (let i = 0; i < mokepones.length; i++) {
+		
+		if (playerPet === mokepones[i].name) {
+			return mokepones[i];
+		}
+	}
 }
 
 function moveUpMokepon() {
 
-	capipepoMok.speedY = -5;
+	mokeponPlayer.speedY = -5;
 }
 
 function moveRightMokepon() {
 
-	capipepoMok.speedX = 5;
+	mokeponPlayer.speedX = 5;
 }
 
 function moveDownMokepon() {
 
-	capipepoMok.speedY = 5;
+	mokeponPlayer.speedY = 5;
 }
 
 function moveLeftMokepon() {
 
-	capipepoMok.speedX = -5;
+	mokeponPlayer.speedX = -5;
 }
 
 function stopMoveMokepon() {
 
-	capipepoMok.speedX = 0;
-	capipepoMok.speedY = 0;
+	mokeponPlayer.speedX = 0;
+	mokeponPlayer.speedY = 0;
 }
 
 function keyPressMove(e) {
