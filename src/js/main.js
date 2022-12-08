@@ -15,7 +15,6 @@ let figthAttackPlayer;
 let figthAttackOpponent;
 let roundsPlayer = 0;
 let roundsOpponent = 0;
-let moveInterval;
 
 const capipepoMok = mokepones[0];
 const hipodogeMok = mokepones[1];
@@ -26,7 +25,7 @@ const ratigueyaMok = mokepones[2];
 function startGame() {
 
 	cardsRender(mokepones);
-	showMap();
+	startMap();
 }
 
 function random(min, max) {
@@ -206,18 +205,26 @@ function restartGame() {
 
 // canvas
 let lienzo = canvasMap.getContext('2d');
+let moveInterval;
+let backgroundMap;
 
-function showMap() {
+function startMap() {
 
-	moveInterval = setInterval(paintMokepon, 50);
+	canvasMap.width = 500;
+	canvasMap.height = 500;
+	moveInterval = setInterval(paintMap, 50);
+
+	backgroundMap = new Image();
+	backgroundMap.src = './src/images/map.png'; 
 }
 
-function paintMokepon() {
+function paintMap() {
 
 	capipepoMok.x = capipepoMok.x + capipepoMok.speedX;
 	capipepoMok.y = capipepoMok.y + capipepoMok.speedY;
 	
 	lienzo.clearRect(0,0,canvasMap.width,canvasMap.height);
+	lienzo.drawImage(backgroundMap,0,0,canvasMap.width,canvasMap.height);
 	lienzo.drawImage(capipepoMok.imageMap,capipepoMok.x,capipepoMok.y,capipepoMok.width,capipepoMok.height);
 }
 
