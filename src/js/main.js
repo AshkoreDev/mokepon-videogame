@@ -17,10 +17,6 @@ let roundsPlayer = 0;
 let roundsOpponent = 0;
 let mokeponPlayer;
 
-// const mokeponPlayer = mokepones[0];
-// const mokeponPlayer = mokepones[1];
-// const mokeponPlayer = mokepones[2];
-
 
 // Functions
 function startGame() {
@@ -61,8 +57,7 @@ function choosePlayerPet() {
 
 		console.log('Debes seleccionar una mascota.');
 	}
-	
-	mokeponPlayer = getMokeponObject();
+
 	chooseOpponentPet();
 	startMap();
 }
@@ -222,6 +217,8 @@ let backgroundMap;
 
 function startMap() {
 
+	mokeponPlayer = getMokeponObject();
+	
 	canvasMap.width = 500;
 	canvasMap.height = 500;
 	moveInterval = setInterval(paintMap, 50);
