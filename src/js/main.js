@@ -16,6 +16,7 @@ let figthAttackOpponent;
 let roundsPlayer = 0;
 let roundsOpponent = 0;
 let mokeponPlayer;
+// let mokeponOpponent;
 
 
 // Functions
@@ -218,6 +219,9 @@ let backgroundMap;
 function startMap() {
 
 	mokeponPlayer = getMokeponObject();
+	// mokeponOpponent = getMokeponObject();
+	// console.log('oponente ', mokeponOpponent);
+	console.log(mokeponPlayer);
 	
 	canvasMap.width = 500;
 	canvasMap.height = 500;
@@ -234,7 +238,9 @@ function paintMap() {
 	
 	lienzo.clearRect(0,0,canvasMap.width,canvasMap.height);
 	lienzo.drawImage(backgroundMap,0,0,canvasMap.width,canvasMap.height);
-	lienzo.drawImage(mokeponPlayer.imageMap,mokeponPlayer.x,mokeponPlayer.y,mokeponPlayer.width,mokeponPlayer.height);
+
+	mokeponPlayer.paintMokepon(lienzo);
+
 }
 
 function moveUpMokepon() {
