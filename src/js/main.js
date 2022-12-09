@@ -17,6 +17,7 @@ let roundsPlayer = 0;
 let roundsOpponent = 0;
 let mokeponPlayer;
 
+
 // Functions
 function startGame() {
 
@@ -213,13 +214,24 @@ function restartGame() {
 let lienzo = canvasMap.getContext('2d');
 let moveInterval;
 let backgroundMap;
+let mapWidth = window.innerWidth - 20;
+let heightSearch;
+const mapMaxWidth = 500;
+
+if (mapWidth > mapMaxWidth) {
+		
+	mapWidth = mapMaxWidth - 20;
+}
+
+heightSearch = mapWidth * 600 / 800;
 
 function startMap() {
 
 	mokeponPlayer = getMokeponObject();
 	
-	canvasMap.width = 500;
-	canvasMap.height = 500;
+	canvasMap.width = mapWidth;
+	canvasMap.height = heightSearch;
+
 	moveInterval = setInterval(paintMap, 50);
 
 	backgroundMap = new Image();
@@ -265,8 +277,8 @@ function checkCollision(opponent) {
 	} else {
 
 		stopMoveMokepon();
+		clearInterval(moveInterval);
 		chooseOpponentPet(opponent);
-		// alert('colision con: ' + opponent.name);
 		// mostras ataques y ocultar mapa
 	}
 }
@@ -336,3 +348,5 @@ moveUpBtn.addEventListener('mouseup', stopMoveMokepon);
 moveRightBtn.addEventListener('mouseup', stopMoveMokepon);
 moveDownBtn.addEventListener('mouseup', stopMoveMokepon);
 moveLeftBtn.addEventListener('mouseup', stopMoveMokepon);
+
+export { random };
