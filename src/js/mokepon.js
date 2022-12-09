@@ -31,9 +31,9 @@ let capipepo = new Mokepon('capipepo', './src/images/capipepo.png');
 let hipodoge = new Mokepon('hipodoge', './src/images/hipodoge.png');
 let ratigueya = new Mokepon('ratigueya', './src/images/ratigueya.png');
 
-let capipepoOpponent = new Mokepon('capipepo', './src/images/capipepo-head.png', 80, 120, 60, 60);
-let hipodogeOpponent = new Mokepon('hipodoge', './src/images/hipodoge-head.png', 150, 95, 60, 60);
-let ratigueyaOpponent = new Mokepon('ratigueya', './src/images/ratigueya-head.png', 200, 190, 60, 60);
+let capipepoOpponent = new Mokepon('capipepo', './src/images/capipepo-head.png', 300, 200, 60, 60);
+let hipodogeOpponent = new Mokepon('hipodoge', './src/images/hipodoge-head.png', 150, 300, 60, 60);
+let ratigueyaOpponent = new Mokepon('ratigueya', './src/images/ratigueya-head.png', 350, 350, 60, 60);
 
 capipepo.attacks.push(
   { name: 'TIERRA', id: 'earthAttackBtn' },
