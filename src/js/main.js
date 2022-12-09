@@ -264,7 +264,9 @@ function checkCollision(opponent) {
 		
 		return;
 	} else {
-		console.log('hay colision');
+
+		stopMoveMokepon();
+		alert('colision con: ' + opponent.name);
 	}
 }
 
