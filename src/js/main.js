@@ -16,8 +16,6 @@ let figthAttackOpponent;
 let roundsPlayer = 0;
 let roundsOpponent = 0;
 let mokeponPlayer;
-// let mokeponOpponent;
-
 
 // Functions
 function startGame() {
@@ -59,15 +57,16 @@ function choosePlayerPet() {
 		console.log('Debes seleccionar una mascota.');
 	}
 
-	chooseOpponentPet();
 	startMap();
 }
 
-function chooseOpponentPet() {
+function chooseOpponentPet(opponent) {
 
-	let opponentPetRandom = random(0,mokepones.length - 1);
-	opponentPet = mokepones[opponentPetRandom].name;
-	opponentAttack = mokepones[opponentPetRandom].attacks;
+	// let opponentPetRandom = random(0,mokepones.length - 1);
+
+	opponentPet = opponent.name;
+	opponentAttack = opponent.attacks;
+	console.log(opponentAttack);
 
 	if (playerPet) {
 		
@@ -266,7 +265,9 @@ function checkCollision(opponent) {
 	} else {
 
 		stopMoveMokepon();
-		alert('colision con: ' + opponent.name);
+		chooseOpponentPet(opponent);
+		// alert('colision con: ' + opponent.name);
+		// mostras ataques y ocultar mapa
 	}
 }
 

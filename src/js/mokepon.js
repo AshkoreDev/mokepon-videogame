@@ -51,8 +51,31 @@ hipodoge.attacks.push(
 	{ name: 'TIERRA', id: 'earthAttackBtn' }
 );
 
-
 ratigueya.attacks.push(
+  { name: 'FUEGO', id: 'fireAttackBtn' },
+	{ name: 'FUEGO', id: 'fireAttackBtn' },
+	{ name: 'FUEGO', id: 'fireAttackBtn' },
+	{ name: 'AGUA', id: 'waterAttackBtn' },
+	{ name: 'TIERRA', id: 'earthAttackBtn' }
+);
+
+capipepoOpponent.attacks.push(
+  { name: 'TIERRA', id: 'earthAttackBtn' },
+	{ name: 'TIERRA', id: 'earthAttackBtn' },
+	{ name: 'TIERRA', id: 'earthAttackBtn' },
+	{ name: 'AGUA', id: 'waterAttackBtn' },
+	{ name: 'FUEGO', id: 'fireAttackBtn' }
+);
+
+hipodogeOpponent.attacks.push(
+  { name: 'AGUA', id: 'waterAttackBtn' },
+	{ name: 'AGUA', id: 'waterAttackBtn' },
+	{ name: 'AGUA', id: 'waterAttackBtn' },
+	{ name: 'FUEGO', id: 'fireAttackBtn' },
+	{ name: 'TIERRA', id: 'earthAttackBtn' }
+);
+
+ratigueyaOpponent.attacks.push(
   { name: 'FUEGO', id: 'fireAttackBtn' },
 	{ name: 'FUEGO', id: 'fireAttackBtn' },
 	{ name: 'FUEGO', id: 'fireAttackBtn' },
