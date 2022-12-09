@@ -1,5 +1,5 @@
 import './nodes.js';
-import { Mokepon, mokepones } from './mokepon.js';
+import { Mokepon, mokepones, mokeponesOpponents  } from './mokepon.js';
 import { cardsRender, buttonsRender } from './cards.js';
 
 
@@ -16,7 +16,7 @@ let figthAttackOpponent;
 let roundsPlayer = 0;
 let roundsOpponent = 0;
 let mokeponPlayer;
-// let mokeponOpponent;
+let mokeponOpponent;
 
 
 // Functions
@@ -30,12 +30,12 @@ function random(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function getMokeponObject() {
+function getMokeponObject(objects) {
 
-	for (let i = 0; i < mokepones.length; i++) {
+	for (let i = 0; i < objects.length; i++) {
 		
-		if (playerPet === mokepones[i].name) {
-			return mokepones[i];
+		if (playerPet === objects[i].name) {
+			return objects[i];
 		}
 	}
 }
@@ -218,10 +218,10 @@ let backgroundMap;
 
 function startMap() {
 
-	mokeponPlayer = getMokeponObject();
-	// mokeponOpponent = getMokeponObject();
-	// console.log('oponente ', mokeponOpponent);
-	console.log(mokeponPlayer);
+	mokeponPlayer = getMokeponObject(mokepones);
+	// mokeponOpponent = getMokeponObject(mokeponesOpponents);
+	// console.log(mokeponOpponent);
+	// // console.log(mokeponPlayer);
 	
 	canvasMap.width = 500;
 	canvasMap.height = 500;
@@ -240,6 +240,9 @@ function paintMap() {
 	lienzo.drawImage(backgroundMap,0,0,canvasMap.width,canvasMap.height);
 
 	mokeponPlayer.paintMokepon(lienzo);
+	mokeponesOpponents[0].paintMokepon(lienzo);
+	mokeponesOpponents[1].paintMokepon(lienzo);
+	mokeponesOpponents[2].paintMokepon(lienzo);
 
 }
 

@@ -1,18 +1,19 @@
 
 let mokepones = [];
+let mokeponesOpponents = [];
 
 // Class
 class Mokepon {
 
-	constructor(name, image, x=20, y=30, lienzo) {
+	constructor(name, image, x=20, y=30, width=100, height=100, lienzo) {
 		
 		this.name = name;
 		this.image = image;
 		this.attacks = [];
 		this.x = x;
 		this.y = y;
-		this.width = 80;
-		this.height = 80;
+		this.width = width;
+		this.height = height;
 		this.imageMap = new Image();
 		this.imageMap.src = image;
 		this.speedX = 0;
@@ -30,9 +31,9 @@ let capipepo = new Mokepon('capipepo', './src/images/capipepo.png');
 let hipodoge = new Mokepon('hipodoge', './src/images/hipodoge.png');
 let ratigueya = new Mokepon('ratigueya', './src/images/ratigueya.png');
 
-let capipepoOpponent = new Mokepon('capipepo', './src/images/capipepo-head.png', 80, 120);
-let hipodogeOpponent = new Mokepon('hipodoge', './src/images/hipodoge-head.png', 150, 95);
-let ratigueyaOpponent = new Mokepon('ratigueya', './src/images/ratigueya-head.png', 200, 190);
+let capipepoOpponent = new Mokepon('capipepo', './src/images/capipepo-head.png', 80, 120, 60, 60);
+let hipodogeOpponent = new Mokepon('hipodoge', './src/images/hipodoge-head.png', 150, 95, 60, 60);
+let ratigueyaOpponent = new Mokepon('ratigueya', './src/images/ratigueya-head.png', 200, 190, 60, 60);
 
 capipepo.attacks.push(
   { name: 'TIERRA', id: 'earthAttackBtn' },
@@ -60,7 +61,8 @@ ratigueya.attacks.push(
 );
 
 mokepones.push(capipepo,hipodoge,ratigueya);
+mokeponesOpponents.push(capipepoOpponent,hipodogeOpponent,ratigueyaOpponent);
 
 console.log(mokepones);
 
-export { Mokepon, mokepones };
+export { Mokepon, mokepones, mokeponesOpponents };
