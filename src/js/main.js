@@ -16,7 +16,7 @@ let figthAttackOpponent;
 let roundsPlayer = 0;
 let roundsOpponent = 0;
 let mokeponPlayer;
-let mokeponOpponent;
+// let mokeponOpponent;
 
 
 // Functions
@@ -30,12 +30,12 @@ function random(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function getMokeponObject(objects) {
+function getMokeponObject() {
 
-	for (let i = 0; i < objects.length; i++) {
+	for (let i = 0; i < mokepones.length; i++) {
 		
-		if (playerPet === objects[i].name) {
-			return objects[i];
+		if (playerPet === mokepones[i].name) {
+			return mokepones[i];
 		}
 	}
 }
@@ -210,7 +210,6 @@ function restartGame() {
 	setTimeout(() => location.reload(), 1000);
 }
 
-
 // canvas
 let lienzo = canvasMap.getContext('2d');
 let moveInterval;
@@ -218,10 +217,7 @@ let backgroundMap;
 
 function startMap() {
 
-	mokeponPlayer = getMokeponObject(mokepones);
-	// mokeponOpponent = getMokeponObject(mokeponesOpponents);
-	// console.log(mokeponOpponent);
-	// // console.log(mokeponPlayer);
+	mokeponPlayer = getMokeponObject();
 	
 	canvasMap.width = 500;
 	canvasMap.height = 500;
@@ -244,7 +240,34 @@ function paintMap() {
 	mokeponesOpponents[1].paintMokepon(lienzo);
 	mokeponesOpponents[2].paintMokepon(lienzo);
 
+	if (mokeponPlayer.speedX !== 0 || mokeponPlayer.speedY !== 0) {
+		
+		checkCollision(mokeponesOpponents[0]);
+		checkCollision(mokeponesOpponents[1]);
+		checkCollision(mokeponesOpponents[2]);
+	}
 }
+
+function checkCollision(opponent) {
+
+	const upOpponent = opponent.y;
+	const downOpponent = opponent.y + opponent.height;
+	const rightOpponent = opponent.x + opponent.width;
+	const leftOpponent = opponent.x;
+
+	const upPlayer = mokeponPlayer.y;
+	const downPlayer = mokeponPlayer.y + mokeponPlayer.height;
+	const rightPlayer = mokeponPlayer.x + mokeponPlayer.width;
+	const leftPlayer = mokeponPlayer.x;
+
+	if (downPlayer < upOpponent || upPlayer > downPlayer || rightPlayer < leftOpponent || leftPlayer > rightOpponent) {
+		
+		return;
+	} else {
+		console.log('hay colision');
+	}
+}
+
 
 function moveUpMokepon() {
 
@@ -292,8 +315,12 @@ function keyPressMove(e) {
 	}
 }
 
+
 // Events
 window.addEventListener('load', startGame);
+window.addEventListener('keydown', keyPressMove);
+window.addEventListener('keyup', stopMoveMokepon);
+
 choosePetBtn.addEventListener('click', choosePlayerPet);
 restartBtn.addEventListener('click', restartGame);
 
@@ -301,9 +328,6 @@ moveUpBtn.addEventListener('mousedown', moveUpMokepon);
 moveRightBtn.addEventListener('mousedown', moveRightMokepon);
 moveDownBtn.addEventListener('mousedown', moveDownMokepon);
 moveLeftBtn.addEventListener('mousedown', moveLeftMokepon);
-
-window.addEventListener('keydown', keyPressMove);
-window.addEventListener('keyup', stopMoveMokepon);
 
 moveUpBtn.addEventListener('mouseup', stopMoveMokepon);
 moveRightBtn.addEventListener('mouseup', stopMoveMokepon);
