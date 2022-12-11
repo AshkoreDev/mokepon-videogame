@@ -1,10 +1,26 @@
 const express = require('express');
 const app = express();
 
+const players = [];
 
-app.get('/', (req, res) => {
+class Player {
 
-	res.send('Bienvenido.');
+	constructor(id) {
+
+		this.id = id;
+	}
+}
+
+app.get('/unirse', (req, res) => {
+
+	const id = `${Math.random().toFixed(2)}`;
+	const player = new Player(id);
+
+	players.push(player);
+
+	res.setHeader('Access-Control-Allow-Origin', '*');
+
+	res.send(id);
 });
 
 app.listen(8080, () => console.log('Servidor prendido.'));
