@@ -1,13 +1,31 @@
 const express = require('express');
-const app = express();
+const cors = require('cors');
 
+const app = express();
 const players = [];
+
+app.use(cors());
+app.use(express.json());
+
 
 class Player {
 
-	constructor(id) {
+	constructor(id, mokepon) {
 
 		this.id = id;
+	}
+
+	assignMokepon(mokepon) {
+
+		this.mokepon = mokepon;
+	}
+}
+
+class Mokepon {
+
+	constructor(name) {
+
+		this.name = name;
 	}
 }
 
@@ -21,6 +39,25 @@ app.get('/unirse', (req, res) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 
 	res.send(id);
+});
+
+app.post('/mokepon/:playerId', (req, res) => {
+
+	const playerId = req.params.playerId || '';
+	const name = req.body.mokepon || '';
+
+	const mokepon = new Mokepon(name);
+	const playerIndex = players.findIndex(player => playerId === player.id);
+
+	if (playerIndex >= 0) {
+		
+		players[playerIndex].assignMokepon(mokepon);
+	}
+	console.log(players);
+	console.log(playerId);
+	// console.log(mokepon);
+
+	res.end();
 });
 
 app.listen(8080, () => console.log('Servidor prendido.'));

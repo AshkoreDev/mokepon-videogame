@@ -16,6 +16,7 @@ let figthAttackOpponent;
 let roundsPlayer = 0;
 let roundsOpponent = 0;
 let mokeponPlayer;
+let playerId = null;
 
 
 // Functions
@@ -27,9 +28,9 @@ function joinGame() {
 			if (res.ok) {
 				
 				res.text()
-					.then((response) => console.log(response))
+					.then((response) => playerId = res);
 			}
-		})
+		});
 }
 
 function startGame() {
@@ -72,7 +73,23 @@ function choosePlayerPet() {
 		console.log('Debes seleccionar una mascota.');
 	}
 
+	chooseMokepon(playerPet);
 	startMap();
+}
+
+function chooseMokepon(playerPet) {
+
+	console.log(playerPet);
+
+	fetch(`http://localhost:8080/mokepon/${playerId}`, {
+		method: 'post',
+		headers: {
+      "Content-Type": "application/json"
+ 		},
+		body: JSON.stringify({
+			mokepon: playerPet
+		})
+	})
 }
 
 function chooseOpponentPet(opponent) {
