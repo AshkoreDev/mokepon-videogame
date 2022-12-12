@@ -74,7 +74,7 @@ app.post('/mokepon/:playerId/position', (req, res) => {
 		
 		players[playerIndex].positionUpdate(x,y);
 	}
-
+	console.log(players);
 	res.end();
 });
 
