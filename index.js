@@ -11,13 +11,16 @@ app.use(express.json());
 class Player {
 
 	constructor(id, mokepon) {
-
 		this.id = id;
 	}
 
 	assignMokepon(mokepon) {
-
 		this.mokepon = mokepon;
+	}
+
+	positionUpdate(x,y) {
+		this.x = x;
+		this.y = y;
 	}
 }
 
@@ -55,7 +58,22 @@ app.post('/mokepon/:playerId', (req, res) => {
 	}
 	console.log(players);
 	console.log(playerId);
-	// console.log(mokepon);
+
+	res.end();
+});
+
+app.post('/mokepon/:playerId/position', (req, res) => {
+
+	const playerId = req.params.playerId || '';
+	const x = req.body.x || 0;
+	const y = req.body.y || 0;
+
+	const playerIndex = players.findIndex(player => playerId === player.id);
+
+	if (playerIndex >= 0) {
+		
+		players[playerIndex].positionUpdate(mokepon);
+	}
 
 	res.end();
 });
