@@ -72,7 +72,7 @@ app.post('/mokepon/:playerId/position', (req, res) => {
 
 	if (playerIndex >= 0) {
 		
-		players[playerIndex].positionUpdate(mokepon);
+		players[playerIndex].positionUpdate(x,y);
 	}
 
 	res.end();

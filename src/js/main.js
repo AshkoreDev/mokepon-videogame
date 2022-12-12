@@ -288,6 +288,21 @@ function paintMap() {
 		checkCollision(mokeponesOpponents[1]);
 		checkCollision(mokeponesOpponents[2]);
 	}
+	sendPosition(mokeponPlayer.x, mokeponPlayer.y);
+}
+
+function sendPosition(x,y) {
+
+	fetch(`http://localhost:8080/mokepon/${playerId}/position`, {
+		method: 'POST',
+		header: {
+		 "Content-Type": "application/json"
+ 		},
+		body: JSON.stringify({
+			x,
+			y 
+		})
+	});
 }
 
 function checkCollision(opponent) {
