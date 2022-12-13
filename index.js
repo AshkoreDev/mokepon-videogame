@@ -73,8 +73,10 @@ app.post('/mokepon/:playerId/posicion', (req, res) => {
 		
 		players[playerIndex].positionUpdate(x,y);
 	}
+
+	const opponents = players.filter(player => playerId !== player.id);
 	console.log(players);
-	res.end();
+	res.send({ opponents });
 });
 
 app.listen(8080, () => console.log('Servidor prendido.'));

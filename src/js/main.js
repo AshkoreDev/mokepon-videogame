@@ -301,7 +301,17 @@ function sendPosition(x,y) {
 			x: x,
 			y: y
 		})
-	});
+	})
+		.then((res) => {
+			if (res.ok) {
+				
+				res.json()
+					.then((opponents) => {
+						
+						console.log(opponents);
+					});
+			}
+		});
 }
 
 function checkCollision(opponent) {
