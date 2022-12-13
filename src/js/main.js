@@ -28,7 +28,7 @@ function joinGame() {
 			if (res.ok) {
 				
 				res.text()
-					.then((response) => playerId = res);
+					.then((response) => playerId = response);
 			}
 		});
 }
@@ -288,7 +288,7 @@ function paintMap() {
 		checkCollision(mokeponesOpponents[1]);
 		checkCollision(mokeponesOpponents[2]);
 	}
-	sendPosition(mokeponPlayer.x, mokeponPlayer.y);
+	// sendPosition(mokeponPlayer.x, mokeponPlayer.y);
 }
 
 function sendPosition(x,y) {
