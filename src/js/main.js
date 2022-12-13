@@ -79,17 +79,15 @@ function choosePlayerPet() {
 
 function chooseMokepon(playerPet) {
 
-	console.log(playerPet);
-
 	fetch(`http://localhost:8080/mokepon/${playerId}`, {
-		method: 'post',
+		method: 'POST',
 		headers: {
       "Content-Type": "application/json"
  		},
 		body: JSON.stringify({
 			mokepon: playerPet
 		})
-	})
+	});
 }
 
 function chooseOpponentPet(opponent) {
@@ -278,6 +276,8 @@ function paintMap() {
 	lienzo.drawImage(backgroundMap,0,0,canvasMap.width,canvasMap.height);
 
 	mokeponPlayer.paintMokepon(lienzo);
+	sendPosition(mokeponPlayer.x, mokeponPlayer.y);
+
 	mokeponesOpponents[0].paintMokepon(lienzo);
 	mokeponesOpponents[1].paintMokepon(lienzo);
 	mokeponesOpponents[2].paintMokepon(lienzo);
@@ -288,19 +288,18 @@ function paintMap() {
 		checkCollision(mokeponesOpponents[1]);
 		checkCollision(mokeponesOpponents[2]);
 	}
-	// sendPosition(mokeponPlayer.x, mokeponPlayer.y);
 }
 
 function sendPosition(x,y) {
 
-	fetch(`http://localhost:8080/mokepon/${playerId}/position`, {
+	fetch(`http://localhost:8080/mokepon/${playerId}/posicion`, {
 		method: 'POST',
-		header: {
-		 "Content-Type": "application/json"
+		headers: {
+      "Content-Type": "application/json"
  		},
 		body: JSON.stringify({
-			x,
-			y 
+			x: x,
+			y: y
 		})
 	});
 }

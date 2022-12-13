@@ -27,7 +27,6 @@ class Player {
 class Mokepon {
 
 	constructor(name) {
-
 		this.name = name;
 	}
 }
@@ -62,7 +61,7 @@ app.post('/mokepon/:playerId', (req, res) => {
 	res.end();
 });
 
-app.post('/mokepon/:playerId/position', (req, res) => {
+app.post('/mokepon/:playerId/posicion', (req, res) => {
 
 	const playerId = req.params.playerId || '';
 	const x = req.body.x || 0;
