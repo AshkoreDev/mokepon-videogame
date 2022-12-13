@@ -278,9 +278,9 @@ function paintMap() {
 	mokeponPlayer.paintMokepon(lienzo);
 	sendPosition(mokeponPlayer.x, mokeponPlayer.y);
 
-	mokeponesOpponents[0].paintMokepon(lienzo);
-	mokeponesOpponents[1].paintMokepon(lienzo);
-	mokeponesOpponents[2].paintMokepon(lienzo);
+	// mokeponOppent.paintMokepon(lienzo);
+	// mokeponesOpponents[1].paintMokepon(lienzo);
+	// mokeponesOpponents[2].paintMokepon(lienzo);
 
 	if (mokeponPlayer.speedX !== 0 || mokeponPlayer.speedY !== 0) {
 		
@@ -306,9 +306,33 @@ function sendPosition(x,y) {
 			if (res.ok) {
 				
 				res.json()
-					.then((opponents) => {
-						
+					.then(({opponents}) => {
+
 						console.log(opponents);
+
+						opponents.forEach(opponent => {
+
+							let mokeponOpponent = null;
+							const mokeponName = opponent.mokepon || '';
+
+							if (mokeponName.name === 'hipodoge') {
+								
+								mokeponOpponent = new Mokepon('hipodoge', './src/images/hipodoge-head.png', 60, 60);
+
+							} else if(mokeponName.name === 'capipepo') {
+
+								mokeponOpponent = new Mokepon('capipepo', './src/images/capipepo-head.png', 60, 60);
+
+							} else if(mokeponName.name === 'ratigueya') {
+
+								mokeponOpponent = new Mokepon('ratigueya', './src/images/ratigueya-head.png', 60, 60);
+							}
+
+							mokeponOpponent.paintMokepon(lienzo);
+							mokeponOpponent.x = opponent.x;
+							mokeponOpponent.y = opponent.y;
+							// mokeponesOpponents.push(mokeponOppent);
+						});
 					});
 			}
 		});

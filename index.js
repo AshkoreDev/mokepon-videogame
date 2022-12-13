@@ -75,7 +75,7 @@ app.post('/mokepon/:playerId/posicion', (req, res) => {
 	}
 
 	const opponents = players.filter(player => playerId !== player.id);
-	console.log(players);
+	console.log(opponents);
 	res.send({ opponents });
 });
 
