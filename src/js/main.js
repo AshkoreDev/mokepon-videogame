@@ -17,6 +17,7 @@ let roundsPlayer = 0;
 let roundsOpponent = 0;
 let mokeponPlayer;
 let playerId = null;
+let mokeponOpponentsList = [];
 
 
 // Functions
@@ -278,6 +279,11 @@ function paintMap() {
 	mokeponPlayer.paintMokepon(lienzo);
 	sendPosition(mokeponPlayer.x, mokeponPlayer.y);
 
+	mokeponOpponentsList.forEach(opponent => {
+		
+		opponent.paintMokepon(lienzo);
+	});
+
 	// mokeponOppent.paintMokepon(lienzo);
 	// mokeponesOpponents[1].paintMokepon(lienzo);
 	// mokeponesOpponents[2].paintMokepon(lienzo);
@@ -308,9 +314,7 @@ function sendPosition(x,y) {
 				res.json()
 					.then(({opponents}) => {
 
-						console.log(opponents);
-
-						opponents.forEach(opponent => {
+						mokeponOpponentsList = opponents.map(opponent => {
 
 							let mokeponOpponent = null;
 							const mokeponName = opponent.mokepon || '';
@@ -328,10 +332,10 @@ function sendPosition(x,y) {
 								mokeponOpponent = new Mokepon('ratigueya', './src/images/ratigueya-head.png', 60, 60);
 							}
 
-							mokeponOpponent.paintMokepon(lienzo);
 							mokeponOpponent.x = opponent.x;
 							mokeponOpponent.y = opponent.y;
-							// mokeponesOpponents.push(mokeponOppent);
+
+							return mokeponOpponent;
 						});
 					});
 			}
