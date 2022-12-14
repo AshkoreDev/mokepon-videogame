@@ -19,6 +19,8 @@ function cardsRender(mokepones) {
 		cardImage.setAttribute('width', '100');
 		cardImage.setAttribute('height', '100');
 
+		card.className = 'pet_cards'
+
 		card.append(cardName, cardOption, cardImage);
 		mokeponCards.append(card);
 	});

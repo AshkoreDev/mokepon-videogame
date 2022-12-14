@@ -4,14 +4,18 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Mokepon Video Game</title>
+	<link rel="stylesheet" href="./src/css/style.css">
 </head>
 <body>
 	
-	<main>
-
-		<section id="map">
+	<main class="flex">
+		
+		<section class="welcome inactive">
 			<h1>MOKEPON</h1>
+		</section>
 
+		<section id="map" class="inactive">
+			
 			<canvas id="canvasMap"></canvas>
 			<button type="button" id="moveUpBtn">Arriba</button>
 			<button type="button" id="moveRightBtn">Derecha</button>
@@ -28,7 +32,7 @@
 			<button type="button" id="choosePetBtn">Seleccionar</button>
 		</section>
 
-		<section id="chooseAttack">
+		<section id="chooseAttack" class="inactive">
 			<p id="playerPetName"></p><span id="playerPetLives"></span>
 			<p id="opponentPetName"></p><span id="opponentPetLives"></span>
 
@@ -41,7 +45,7 @@
 			<p id="finalResult"></p>
 		</section>
 
-		<section id="restart">
+		<section id="restart" class="inactive">
 			<button id="restartBtn">Reiniciar</button>
 		</section>
 
