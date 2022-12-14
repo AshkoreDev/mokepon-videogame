@@ -347,8 +347,11 @@ function createMessages(fightResult) {
 }
 
 function restartGame() {
-
-	setTimeout(() => location.reload(), 1000);
+	
+	setTimeout(() => {
+		// mokeponOpponentsList = [];
+		location.reload();
+	} , 1000);
 }
 
 // MAP
