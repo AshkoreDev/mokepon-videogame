@@ -21,224 +21,224 @@ let mokeponOpponentsList = [];
 
 
 // Functions
-function joinGame() {
+// function joinGame() {
 
-	fetch('http://localhost:8080/unirse')
-		.then((res) => {
+// 	fetch('http://localhost:8080/unirse')
+// 		.then((res) => {
 
-			if (res.ok) {
+// 			if (res.ok) {
 				
-				res.text()
-					.then((response) => playerId = response);
-			}
-		});
-}
+// 				res.text()
+// 					.then((response) => playerId = response);
+// 			}
+// 		});
+// }
 
-function startGame() {
+// function startGame() {
 
-	joinGame();
-	cardsRender(mokepones);
-}
+// 	joinGame();
+// 	cardsRender(mokepones);
+// }
 
-function random(min, max) {
+// function random(min, max) {
 
-	return Math.floor(Math.random() * (max - min + 1) + min);
-}
+// 	return Math.floor(Math.random() * (max - min + 1) + min);
+// }
 
-function getMokeponObject() {
+// function getMokeponObject() {
 
-	for (let i = 0; i < mokepones.length; i++) {
+// 	for (let i = 0; i < mokepones.length; i++) {
 		
-		if (playerPet === mokepones[i].name) {
-			return mokepones[i];
-		}
-	}
-}
+// 		if (playerPet === mokepones[i].name) {
+// 			return mokepones[i];
+// 		}
+// 	}
+// }
 
-function choosePlayerPet() {
+// function choosePlayerPet() {
 
-	if (capipepoPet.checked) {
+// 	if (capipepoPet.checked) {
 
-		playerPet = mokepones[0].name;
+// 		playerPet = mokepones[0].name;
 
-	}	else if(hipodogePet.checked) {
+// 	}	else if(hipodogePet.checked) {
 
-		playerPet = mokepones[1].name;
+// 		playerPet = mokepones[1].name;
 
-	}	else if(ratigueyaPet.checked) {
+// 	}	else if(ratigueyaPet.checked) {
 
-		playerPet = mokepones[2].name;
+// 		playerPet = mokepones[2].name;
 
-	}	else {
+// 	}	else {
 
-		console.log('Debes seleccionar una mascota.');
-	}
+// 		console.log('Debes seleccionar una mascota.');
+// 	}
 
-	chooseMokepon(playerPet);
-	startMap();
-}
+// 	chooseMokepon(playerPet);
+// 	startMap();
+// }
 
-function chooseMokepon(playerPet) {
+// function chooseMokepon(playerPet) {
 
-	fetch(`http://localhost:8080/mokepon/${playerId}`, {
-		method: 'POST',
-		headers: {
-      "Content-Type": "application/json"
- 		},
-		body: JSON.stringify({
-			mokepon: playerPet
-		})
-	});
-}
+// 	fetch(`http://localhost:8080/mokepon/${playerId}`, {
+// 		method: 'POST',
+// 		headers: {
+//       "Content-Type": "application/json"
+//  		},
+// 		body: JSON.stringify({
+// 			mokepon: playerPet
+// 		})
+// 	});
+// }
 
-function chooseOpponentPet(opponent) {
+// function chooseOpponentPet(opponent) {
 
-	// let opponentPetRandom = random(0,mokepones.length - 1);
+// 	// let opponentPetRandom = random(0,mokepones.length - 1);
 
-	opponentPet = opponent.name;
-	opponentAttack = opponent.attacks;
-	console.log(opponentAttack);
+// 	opponentPet = opponent.name;
+// 	opponentAttack = opponent.attacks;
+// 	console.log(opponentAttack);
 
-	if (playerPet) {
+// 	if (playerPet) {
 		
-		playerPetName.textContent = `TU MASCOTA ${playerPet}`;
-		opponentPetName.textContent = `TU OPONENTE ${opponentPet}`;
+// 		playerPetName.textContent = `TU MASCOTA ${playerPet}`;
+// 		opponentPetName.textContent = `TU OPONENTE ${opponentPet}`;
 
-		buttonsRender(mokepones, playerPet);
+// 		buttonsRender(mokepones, playerPet);
 
-		let attackButtons = document.querySelectorAll('.attackButtons');
-		attackSecuence(attackButtons);
-	}
-}
+// 		let attackButtons = document.querySelectorAll('.attackButtons');
+// 		attackSecuence(attackButtons);
+// 	}
+// }
 
-function attackSecuence(attackButtons) {
+// function attackSecuence(attackButtons) {
 
-	attackButtons.forEach(button => {
+// 	attackButtons.forEach(button => {
 
-		button.addEventListener('click', e => {
+// 		button.addEventListener('click', e => {
 
-			if (e.target.textContent === 'FUEGO') {
+// 			if (e.target.textContent === 'FUEGO') {
 				
-				playerAttack.push('FUEGO');
-				// agregar color de seleccionado
+// 				playerAttack.push('FUEGO');
+// 				// agregar color de seleccionado
 
-			} else if(e.target.textContent === 'AGUA') {
+// 			} else if(e.target.textContent === 'AGUA') {
 
-				playerAttack.push('AGUA');
-				// agregar color de seleccionado
+// 				playerAttack.push('AGUA');
+// 				// agregar color de seleccionado
 
-			} else {
+// 			} else {
 				
-				playerAttack.push('TIERRA');
-				// agregar color de seleccionado
-			}
+// 				playerAttack.push('TIERRA');
+// 				// agregar color de seleccionado
+// 			}
 
-			chooseOpponentAttack();
-		});
-	});
-}
+// 			chooseOpponentAttack();
+// 		});
+// 	});
+// }
 
-function chooseOpponentAttack() {
+// function chooseOpponentAttack() {
 
-	let opponentAttackRandom = random(0,opponentAttack.length - 1);
+// 	let opponentAttackRandom = random(0,opponentAttack.length - 1);
 
-	if (opponentAttackRandom == 0 || opponentAttackRandom == 1) {
+// 	if (opponentAttackRandom == 0 || opponentAttackRandom == 1) {
 
-		opponentAttacks.push('FUEGO');
+// 		opponentAttacks.push('FUEGO');
 
-	}	else if(opponentAttackRandom == 3 || opponentAttackRandom == 4) {
+// 	}	else if(opponentAttackRandom == 3 || opponentAttackRandom == 4) {
 
-		opponentAttacks.push('AGUA');
+// 		opponentAttacks.push('AGUA');
 
-	}	else {
+// 	}	else {
 
-		opponentAttacks.push('TIERRA');
-	}
+// 		opponentAttacks.push('TIERRA');
+// 	}
 	
-	startFight();
-}
+// 	startFight();
+// }
 
-function startFight() {
+// function startFight() {
 
-	if (playerAttack.length === 5) {
+// 	if (playerAttack.length === 5) {
 
-		fight();
-	}
-}
+// 		fight();
+// 	}
+// }
 
-function bothOpponents(player, opponent, fightResult) {
+// function bothOpponents(player, opponent, fightResult) {
 
-	figthAttackPlayer = playerAttack[player];
-	figthAttackOpponent = opponentAttacks[opponent];
+// 	figthAttackPlayer = playerAttack[player];
+// 	figthAttackOpponent = opponentAttacks[opponent];
 	
-	createMessages(fightResult);
-}
+// 	createMessages(fightResult);
+// }
 
-function fight() {
+// function fight() {
 
-	for (let i = 0; i < playerAttack.length;  i++) {
+// 	for (let i = 0; i < playerAttack.length;  i++) {
 		
-		if (playerAttack[i] === opponentAttacks[i]) {
+// 		if (playerAttack[i] === opponentAttacks[i]) {
 
-			fightResult = 'HUBO EMPATE.';
-			bothOpponents(i,i,fightResult);
+// 			fightResult = 'HUBO EMPATE.';
+// 			bothOpponents(i,i,fightResult);
 
-		} else if(playerAttack[i] === 'FUEGO' && opponentAttacks[i] === 'TIERRA' || playerAttack[i] === 'AGUA' && opponentAttacks[i] === 'FUEGO' || playerAttack[i] === 'TIERRA' && opponentAttacks[i] === 'AGUA') {
+// 		} else if(playerAttack[i] === 'FUEGO' && opponentAttacks[i] === 'TIERRA' || playerAttack[i] === 'AGUA' && opponentAttacks[i] === 'FUEGO' || playerAttack[i] === 'TIERRA' && opponentAttacks[i] === 'AGUA') {
 
-			fightResult = 'GANASTE LA PARTIDA.';
-			bothOpponents(i,i,fightResult);
-			roundsPlayer++;	
+// 			fightResult = 'GANASTE LA PARTIDA.';
+// 			bothOpponents(i,i,fightResult);
+// 			roundsPlayer++;	
 
-		} else {
+// 		} else {
 	
-			fightResult = 'PERDISTE LA PARTIDA.';
-			bothOpponents(i,i,fightResult);
-			roundsOpponent++;
-		}
-	}
+// 			fightResult = 'PERDISTE LA PARTIDA.';
+// 			bothOpponents(i,i,fightResult);
+// 			roundsOpponent++;
+// 		}
+// 	}
 	
-	checkRounds();
-}
+// 	checkRounds();
+// }
 
-function checkRounds() {
+// function checkRounds() {
 
-	if (roundsPlayer === roundsOpponent) {
+// 	if (roundsPlayer === roundsOpponent) {
 		
-		fightFinalResult = 'JUEGO EMPATADO.';
+// 		fightFinalResult = 'JUEGO EMPATADO.';
 
-	} else	if (roundsPlayer > roundsOpponent) {
+// 	} else	if (roundsPlayer > roundsOpponent) {
 
-		fightFinalResult = 'GANASTE EL JUEGO.';
+// 		fightFinalResult = 'GANASTE EL JUEGO.';
 
-	} else {
+// 	} else {
 
-		fightFinalResult = 'PERDISTE EL JUEGO.';
-	}
+// 		fightFinalResult = 'PERDISTE EL JUEGO.';
+// 	}
 
-	finalResult.textContent = fightFinalResult;
-	if (roundsPlayer >= 0 && roundsOpponent >= 0) {
+// 	finalResult.textContent = fightFinalResult;
+// 	if (roundsPlayer >= 0 && roundsOpponent >= 0) {
 		
-		playerPetLives.textContent = `GANASTE ${roundsPlayer} ROUNDS.`;
-		opponentPetLives.textContent = `TU OPONENTE GANÓ ${roundsOpponent} ROUNDS.`;
-	}
-}
+// 		playerPetLives.textContent = `GANASTE ${roundsPlayer} ROUNDS.`;
+// 		opponentPetLives.textContent = `TU OPONENTE GANÓ ${roundsOpponent} ROUNDS.`;
+// 	}
+// }
 
-function createMessages(fightResult) {
+// function createMessages(fightResult) {
 
-	const attackRounds = document.createElement('p');
+// 	const attackRounds = document.createElement('p');
 		
-	attackRounds.textContent = `Tu mascota atacó con ${figthAttackPlayer} y Tu oponente atacó con ${figthAttackOpponent} - ${fightResult}`;
+// 	attackRounds.textContent = `Tu mascota atacó con ${figthAttackPlayer} y Tu oponente atacó con ${figthAttackOpponent} - ${fightResult}`;
 
-	if (playerPet) {
+// 	if (playerPet) {
 		
-		rounds.append(attackRounds);
-	}
-}
+// 		rounds.append(attackRounds);
+// 	}
+// }
 
-function restartGame() {
+// function restartGame() {
 
-	setTimeout(() => location.reload(), 1000);
-}
+// 	setTimeout(() => location.reload(), 1000);
+// }
 
 // canvas
 let lienzo = canvasMap.getContext('2d');
@@ -255,163 +255,163 @@ if (mapWidth > mapMaxWidth) {
 
 heightSearch = mapWidth * 600 / 800;
 
-function startMap() {
+// function startMap() {
 
-	mokeponPlayer = getMokeponObject();
+// 	mokeponPlayer = getMokeponObject();
 	
-	canvasMap.width = mapWidth;
-	canvasMap.height = heightSearch;
+// 	canvasMap.width = mapWidth;
+// 	canvasMap.height = heightSearch;
 
-	moveInterval = setInterval(paintMap, 50);
+// 	moveInterval = setInterval(paintMap, 50);
 
-	backgroundMap = new Image();
-	backgroundMap.src = './src/images/map.png';
-}
+// 	backgroundMap = new Image();
+// 	backgroundMap.src = './src/images/map.png';
+// }
 
-function paintMap() {
+// function paintMap() {
 
-	mokeponPlayer.x = mokeponPlayer.x + mokeponPlayer.speedX;
-	mokeponPlayer.y = mokeponPlayer.y + mokeponPlayer.speedY;
+// 	mokeponPlayer.x = mokeponPlayer.x + mokeponPlayer.speedX;
+// 	mokeponPlayer.y = mokeponPlayer.y + mokeponPlayer.speedY;
 	
-	lienzo.clearRect(0,0,canvasMap.width,canvasMap.height);
-	lienzo.drawImage(backgroundMap,0,0,canvasMap.width,canvasMap.height);
+// 	lienzo.clearRect(0,0,canvasMap.width,canvasMap.height);
+// 	lienzo.drawImage(backgroundMap,0,0,canvasMap.width,canvasMap.height);
 
-	mokeponPlayer.paintMokepon(lienzo);
-	sendPosition(mokeponPlayer.x, mokeponPlayer.y);
+// 	mokeponPlayer.paintMokepon(lienzo);
+// 	sendPosition(mokeponPlayer.x, mokeponPlayer.y);
 
-	mokeponOpponentsList.forEach(opponent => {
+// 	mokeponOpponentsList.forEach(opponent => {
 		
-		opponent.paintMokepon(lienzo);
-	});
+// 		opponent.paintMokepon(lienzo);
+// 	});
 
-	// mokeponOppent.paintMokepon(lienzo);
-	// mokeponesOpponents[1].paintMokepon(lienzo);
-	// mokeponesOpponents[2].paintMokepon(lienzo);
+// 	// mokeponOppent.paintMokepon(lienzo);
+// 	// mokeponesOpponents[1].paintMokepon(lienzo);
+// 	// mokeponesOpponents[2].paintMokepon(lienzo);
 
-	if (mokeponPlayer.speedX !== 0 || mokeponPlayer.speedY !== 0) {
+// 	if (mokeponPlayer.speedX !== 0 || mokeponPlayer.speedY !== 0) {
 		
-		checkCollision(mokeponesOpponents[0]);
-		checkCollision(mokeponesOpponents[1]);
-		checkCollision(mokeponesOpponents[2]);
-	}
-}
+// 		checkCollision(mokeponesOpponents[0]);
+// 		checkCollision(mokeponesOpponents[1]);
+// 		checkCollision(mokeponesOpponents[2]);
+// 	}
+// }
 
-function sendPosition(x,y) {
+// function sendPosition(x,y) {
 
-	fetch(`http://localhost:8080/mokepon/${playerId}/posicion`, {
-		method: 'POST',
-		headers: {
-      "Content-Type": "application/json"
- 		},
-		body: JSON.stringify({
-			x: x,
-			y: y
-		})
-	})
-		.then((res) => {
-			if (res.ok) {
+// 	fetch(`http://localhost:8080/mokepon/${playerId}/posicion`, {
+// 		method: 'POST',
+// 		headers: {
+//       "Content-Type": "application/json"
+//  		},
+// 		body: JSON.stringify({
+// 			x: x,
+// 			y: y
+// 		})
+// 	})
+// 		.then((res) => {
+// 			if (res.ok) {
 				
-				res.json()
-					.then(({opponents}) => {
+// 				res.json()
+// 					.then(({opponents}) => {
 
-						mokeponOpponentsList = opponents.map(opponent => {
+// 						mokeponOpponentsList = opponents.map(opponent => {
 
-							let mokeponOpponent = null;
-							const mokeponName = opponent.mokepon || '';
+// 							let mokeponOpponent = null;
+// 							const mokeponName = opponent.mokepon || '';
 
-							if (mokeponName.name === 'hipodoge') {
+// 							if (mokeponName.name === 'hipodoge') {
 								
-								mokeponOpponent = new Mokepon('hipodoge', './src/images/hipodoge-head.png', 60, 60);
+// 								mokeponOpponent = new Mokepon('hipodoge', './src/images/hipodoge-head.png', 60, 60);
 
-							} else if(mokeponName.name === 'capipepo') {
+// 							} else if(mokeponName.name === 'capipepo') {
 
-								mokeponOpponent = new Mokepon('capipepo', './src/images/capipepo-head.png', 60, 60);
+// 								mokeponOpponent = new Mokepon('capipepo', './src/images/capipepo-head.png', 60, 60);
 
-							} else if(mokeponName.name === 'ratigueya') {
+// 							} else if(mokeponName.name === 'ratigueya') {
 
-								mokeponOpponent = new Mokepon('ratigueya', './src/images/ratigueya-head.png', 60, 60);
-							}
+// 								mokeponOpponent = new Mokepon('ratigueya', './src/images/ratigueya-head.png', 60, 60);
+// 							}
 
-							mokeponOpponent.x = opponent.x;
-							mokeponOpponent.y = opponent.y;
+// 							mokeponOpponent.x = opponent.x;
+// 							mokeponOpponent.y = opponent.y;
 
-							return mokeponOpponent;
-						});
-					});
-			}
-		});
-}
+// 							return mokeponOpponent;
+// 						});
+// 					});
+// 			}
+// 		});
+// }
 
-function checkCollision(opponent) {
+// function checkCollision(opponent) {
 
-	const upOpponent = opponent.y;
-	const downOpponent = opponent.y + opponent.height;
-	const rightOpponent = opponent.x + opponent.width;
-	const leftOpponent = opponent.x;
+// 	const upOpponent = opponent.y;
+// 	const downOpponent = opponent.y + opponent.height;
+// 	const rightOpponent = opponent.x + opponent.width;
+// 	const leftOpponent = opponent.x;
 
-	const upPlayer = mokeponPlayer.y;
-	const downPlayer = mokeponPlayer.y + mokeponPlayer.height;
-	const rightPlayer = mokeponPlayer.x + mokeponPlayer.width;
-	const leftPlayer = mokeponPlayer.x;
+// 	const upPlayer = mokeponPlayer.y;
+// 	const downPlayer = mokeponPlayer.y + mokeponPlayer.height;
+// 	const rightPlayer = mokeponPlayer.x + mokeponPlayer.width;
+// 	const leftPlayer = mokeponPlayer.x;
 
-	if (downPlayer < upOpponent || upPlayer > downPlayer || rightPlayer < leftOpponent || leftPlayer > rightOpponent) {
+// 	if (downPlayer < upOpponent || upPlayer > downPlayer || rightPlayer < leftOpponent || leftPlayer > rightOpponent) {
 		
-		return;
-	} else {
+// 		return;
+// 	} else {
 
-		stopMoveMokepon();
-		clearInterval(moveInterval);
-		chooseOpponentPet(opponent);
-		// mostras ataques y ocultar mapa
-	}
-}
+// 		stopMoveMokepon();
+// 		clearInterval(moveInterval);
+// 		chooseOpponentPet(opponent);
+// 		// mostras ataques y ocultar mapa
+// 	}
+// }
 
 
-function moveUpMokepon() {
+// function moveUpMokepon() {
 
-	mokeponPlayer.speedY = -5;
-}
+// 	mokeponPlayer.speedY = -5;
+// }
 
-function moveRightMokepon() {
+// function moveRightMokepon() {
 
-	mokeponPlayer.speedX = 5;
-}
+// 	mokeponPlayer.speedX = 5;
+// }
 
-function moveDownMokepon() {
+// function moveDownMokepon() {
 
-	mokeponPlayer.speedY = 5;
-}
+// 	mokeponPlayer.speedY = 5;
+// }
 
-function moveLeftMokepon() {
+// function moveLeftMokepon() {
 
-	mokeponPlayer.speedX = -5;
-}
+// 	mokeponPlayer.speedX = -5;
+// }
 
-function stopMoveMokepon() {
+// function stopMoveMokepon() {
 
-	mokeponPlayer.speedX = 0;
-	mokeponPlayer.speedY = 0;
-}
+// 	mokeponPlayer.speedX = 0;
+// 	mokeponPlayer.speedY = 0;
+// }
 
-function keyPressMove(e) {
+// function keyPressMove(e) {
 
-	if (e.key == 'ArrowUp') {
+// 	if (e.key == 'ArrowUp') {
 
-		moveUpMokepon();
+// 		moveUpMokepon();
 
-	} else if(e.key == 'ArrowRight') {
+// 	} else if(e.key == 'ArrowRight') {
 
-		moveRightMokepon();
+// 		moveRightMokepon();
 
-	} else if(e.key == 'ArrowDown') {
+// 	} else if(e.key == 'ArrowDown') {
 
-		moveDownMokepon();
+// 		moveDownMokepon();
 
-	} else if(e.key == 'ArrowLeft') {
+// 	} else if(e.key == 'ArrowLeft') {
 
-		moveLeftMokepon();
-	}
-}
+// 		moveLeftMokepon();
+// 	}
+// }
 
 
 // Events
