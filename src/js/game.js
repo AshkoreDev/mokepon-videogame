@@ -150,7 +150,6 @@ function choosePlayerPet() {
 
 		console.log('Debes seleccionar una mascota.');
 	}
-
 	chooseMokepon(playerPet);
 	startMap();
 }
@@ -210,7 +209,6 @@ function attackSecuence(attackButtons) {
 			if (playerAttack.length === 5) {
 				
 				sendAttacks(playerAttack);
-				console.log(opponentAttack);
 			}
 			// chooseOpponentAttack();
 		});
@@ -239,7 +237,7 @@ function getAttacks() {
 			if (res.ok) {
 				
 				res.json()
-					.then((attacks) => {
+					.then(({attacks}) => {
 
 						if (attacks.length === 5) {
 								
@@ -309,7 +307,6 @@ function fight() {
 			roundsOpponent++;
 		}
 	}
-	
 	checkRounds();
 }
 
@@ -340,7 +337,7 @@ function checkRounds() {
 function createMessages(fightResult) {
 
 	const attackRounds = document.createElement('p');
-		
+
 	attackRounds.textContent = `Tu mascota atacó con ${figthAttackPlayer} y Tu oponente atacó con ${figthAttackOpponent} - ${fightResult}`;
 
 	if (playerPet) {
@@ -382,9 +379,7 @@ function paintMap() {
 	mokeponOpponentsList.forEach(opponent => {
 		
 		opponent.paintMokepon(lienzo);
-		console.log(opponent);
 		checkCollision(opponent);
-				
 	});
 }
 
@@ -427,6 +422,8 @@ function sendPosition(x,y) {
 							mokeponOpponent.x = opponent.x;
 							mokeponOpponent.y = opponent.y;
 
+							playerPetName.textContent = `TU MASCOTA ${playerPet}`;
+							opponentPetName.textContent = `TU OPONENTE ${mokeponOpponent.name}`;
 							return mokeponOpponent;
 						});
 					});
