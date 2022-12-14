@@ -18,6 +18,10 @@ class Player {
 		this.mokepon = mokepon;
 	}
 
+	assignAttacks(attacks) {
+		this.attacks = attacks;
+	}
+
 	positionUpdate(x,y) {
 		this.x = x;
 		this.y = y;
@@ -77,6 +81,23 @@ app.post('/mokepon/:playerId/posicion', (req, res) => {
 	const opponents = players.filter(player => playerId !== player.id);
 	console.log(opponents);
 	res.send({ opponents });
+});
+
+app.post('/mokepon/:playerId/ataques', (req, res) => {
+
+	const playerId = req.params.playerId || '';
+	const attacks = req.body.attacks || [];
+
+	const playerIndex = players.findIndex(player => playerId === player.id);
+
+	if (playerIndex >= 0) {
+		
+		players[playerIndex].assignAttacks(attacks);
+	}
+	console.log(players);
+	console.log(playerId);
+
+	res.end();
 });
 
 app.listen(8080, () => console.log('Servidor prendido.'));

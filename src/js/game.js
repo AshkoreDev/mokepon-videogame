@@ -16,6 +16,7 @@ let roundsPlayer = 0;
 let roundsOpponent = 0;
 let mokeponPlayer;
 let playerId = null;
+let opponentId = null;
 let mokeponOpponentsList = [];
 
 let lienzo = canvasMap.getContext('2d');
@@ -36,7 +37,7 @@ heightSearch = mapWidth * 600 / 800;
 // CLASS
 class Mokepon {
 
-	constructor(name, image, width=100, height=100, lienzo, id=null) {
+	constructor(name, image, width=100, height=100, id=null, lienzo) {
 		
 		this.id = id;
 		this.name = name;
@@ -170,7 +171,6 @@ function chooseOpponentPet(opponent) {
 
 	opponentPet = opponent.name;
 	opponentAttack = opponent.attacks;
-	console.log(opponentAttack);
 
 	if (playerPet) {
 		
@@ -206,8 +206,26 @@ function attackSecuence(attackButtons) {
 				// agregar color de seleccionado
 			}
 
-			chooseOpponentAttack();
+			if (playerAttack.length === 5) {
+				
+				sendAttacks(playerAttack);
+				console.log(opponentAttack);
+			}
+			// chooseOpponentAttack();
 		});
+	});
+}
+
+function sendAttacks(playerAttack) {
+
+	fetch(`http://localhost:8080/mokepon/${playerId}/ataques`, {
+		method: 'POST',
+		headers: {
+      "Content-Type": "application/json"
+ 		},
+		body: JSON.stringify({
+			attacks: playerAttack
+		})
 	});
 }
 
@@ -227,8 +245,6 @@ function chooseOpponentAttack() {
 
 		opponentAttacks.push('TIERRA');
 	}
-	
-	startFight();
 }
 
 function startFight() {
@@ -342,14 +358,11 @@ function paintMap() {
 	mokeponOpponentsList.forEach(opponent => {
 		
 		opponent.paintMokepon(lienzo);
-	});
-
-	if (mokeponPlayer.speedX !== 0 || mokeponPlayer.speedY !== 0) {
+		console.log(opponent);
+		checkCollision(opponent);
+		// startFight();
 		
-		checkCollision(mokeponesOpponents[0]);
-		checkCollision(mokeponesOpponents[1]);
-		checkCollision(mokeponesOpponents[2]);
-	}
+	});
 }
 
 function sendPosition(x,y) {
@@ -377,15 +390,15 @@ function sendPosition(x,y) {
 
 							if (mokeponName.name === 'hipodoge') {
 								
-								mokeponOpponent = new Mokepon('hipodoge', './src/images/hipodoge-head.png', 60, 60);
+								mokeponOpponent = new Mokepon('hipodoge', './src/images/hipodoge-head.png', 60, 60, opponent.id);
 
 							} else if(mokeponName.name === 'capipepo') {
 
-								mokeponOpponent = new Mokepon('capipepo', './src/images/capipepo-head.png', 60, 60);
+								mokeponOpponent = new Mokepon('capipepo', './src/images/capipepo-head.png', 60, 60, opponent.id);
 
 							} else if(mokeponName.name === 'ratigueya') {
 
-								mokeponOpponent = new Mokepon('ratigueya', './src/images/ratigueya-head.png', 60, 60);
+								mokeponOpponent = new Mokepon('ratigueya', './src/images/ratigueya-head.png', 60, 60, opponent.id);
 							}
 
 							mokeponOpponent.x = opponent.x;
@@ -415,6 +428,7 @@ function checkCollision(opponent) {
 		return;
 	} else {
 
+		opponentId = opponent.id;
 		stopMoveMokepon();
 		clearInterval(moveInterval);
 		chooseOpponentPet(opponent);
