@@ -18,6 +18,7 @@ let mokeponPlayer;
 let playerId = null;
 let opponentId = null;
 let mokeponOpponentsList = [];
+let interval;
 
 let lienzo = canvasMap.getContext('2d');
 let moveInterval;
@@ -227,6 +228,27 @@ function sendAttacks(playerAttack) {
 			attacks: playerAttack
 		})
 	});
+
+	interval = setInterval(getAttacks, 50);
+}
+
+function getAttacks() {
+
+	fetch(`http://localhost:8080/mokepon/${opponentId}/ataques`)
+		.then((res) => {
+			if (res.ok) {
+				
+				res.json()
+					.then((attacks) => {
+
+						if (attacks.length === 5) {
+								
+							opponentAttacks = attacks;
+							startFight();
+						}
+					})
+			}
+		})
 }
 
 function chooseOpponentAttack() {
@@ -264,6 +286,8 @@ function bothOpponents(player, opponent, fightResult) {
 }
 
 function fight() {
+
+	clearInterval(interval);
 
 	for (let i = 0; i < playerAttack.length;  i++) {
 		
@@ -360,8 +384,7 @@ function paintMap() {
 		opponent.paintMokepon(lienzo);
 		console.log(opponent);
 		checkCollision(opponent);
-		// startFight();
-		
+				
 	});
 }
 

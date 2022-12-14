@@ -100,4 +100,15 @@ app.post('/mokepon/:playerId/ataques', (req, res) => {
 	res.end();
 });
 
+app.post('/mokepon/:playerId/ataques', (req, res) => {
+
+	const playerId = req.params.playerId || '';
+	const player = players.find(player => playerId === player.id);
+
+	res.send({ attacks: player.attacks || [] });
+
+	console.log(players);
+	console.log(playerId);
+});
+
 app.listen(8080, () => console.log('Servidor prendido.'));
