@@ -78,6 +78,24 @@ h1 {
 	padding: 10px;
 }
 
+/*ATTACKS*/
+#chooseAttack {
+	margin: 50px auto;
+}
+
+/*RESTART*/
+#restart {
+
+}
+
+#restartBtn {
+	padding: 10px 20px;
+	border-radius: 8px;
+	color: white;
+	border: 1px solid green;
+	background-color: green;
+}
+
 @media screen and (min-width: 768px) {
 	#choosePet {
 		width: 700px;
