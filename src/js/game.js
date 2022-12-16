@@ -153,7 +153,7 @@ function choosePlayerPet() {
 
 	// chooseMokepon(playerPet);
 	// startMap();
-	
+
 	choosePet.classList.add('inactive');
 	map.classList.remove('inactive');
 }
@@ -460,6 +460,10 @@ function checkCollision(opponent) {
 		clearInterval(moveInterval);
 		chooseOpponentPet(opponent);
 		// mostras ataques y ocultar mapa
+		map.classList.toggle('inactive');
+		// map.classList.add('active');
+		
+		chooseAttack.classList.toggle('inactive');
 	}
 }
 

@@ -69,7 +69,6 @@ h1 {
 }
 
 .map__buttons {
-	/*width: 200px;*/
 	margin: 0 auto;
 	flex-wrap: wrap;
 	gap: 10px;
