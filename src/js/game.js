@@ -95,7 +95,7 @@ ratigueya.attacks.push(...RATIGUEYA_ATTACKS);
 
 mokepones.push(capipepo,hipodoge,ratigueya);
 
-
+startMap();
 // FUNCTIONS
 function random(min, max) {
 
@@ -127,7 +127,7 @@ function joinGame() {
 
 function startGame() {
 
-	joinGame();
+	// joinGame();
 	cardsRender(mokepones);
 	// esconder mapa, y boton reiniciar
 }
@@ -150,8 +150,12 @@ function choosePlayerPet() {
 
 		console.log('Debes seleccionar una mascota.');
 	}
-	chooseMokepon(playerPet);
-	startMap();
+
+	// chooseMokepon(playerPet);
+	// startMap();
+	
+	choosePet.classList.add('inactive');
+	map.classList.remove('inactive');
 }
 
 function chooseMokepon(playerPet) {
@@ -208,7 +212,7 @@ function attackSecuence(attackButtons) {
 
 			if (playerAttack.length === 5) {
 				
-				sendAttacks(playerAttack);
+				// sendAttacks(playerAttack);
 			}
 			// chooseOpponentAttack();
 		});
@@ -370,14 +374,14 @@ function startMap() {
 
 function paintMap() {
 
-	mokeponPlayer.x = mokeponPlayer.x + mokeponPlayer.speedX;
-	mokeponPlayer.y = mokeponPlayer.y + mokeponPlayer.speedY;
+	// mokeponPlayer.x = mokeponPlayer.x + mokeponPlayer.speedX;
+	// mokeponPlayer.y = mokeponPlayer.y + mokeponPlayer.speedY;
 	
 	lienzo.clearRect(0,0,canvasMap.width,canvasMap.height);
 	lienzo.drawImage(backgroundMap,0,0,canvasMap.width,canvasMap.height);
 
-	mokeponPlayer.paintMokepon(lienzo);
-	sendPosition(mokeponPlayer.x, mokeponPlayer.y);
+	// mokeponPlayer.paintMokepon(lienzo);
+	// sendPosition(mokeponPlayer.x, mokeponPlayer.y);
 
 	mokeponOpponentsList.forEach(opponent => {
 		
