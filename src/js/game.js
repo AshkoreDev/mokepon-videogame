@@ -95,7 +95,7 @@ ratigueya.attacks.push(...RATIGUEYA_ATTACKS);
 
 mokepones.push(capipepo,hipodoge,ratigueya);
 
-startMap();
+
 // FUNCTIONS
 function random(min, max) {
 
@@ -150,8 +150,6 @@ function choosePlayerPet() {
 		console.log('Debes seleccionar una mascota.');
 	}
 
-	console.log(playerPet);
-
 	chooseMokepon(playerPet);
 	startMap();
 
@@ -186,6 +184,7 @@ function chooseOpponentPet(opponent) {
 
 		let attackButtons = document.querySelectorAll('.attackButtons');
 		attackSecuence(attackButtons);
+		startMap();
 	}
 }
 
@@ -371,7 +370,6 @@ function startMap() {
 
 	backgroundMap = new Image();
 	backgroundMap.src = './src/images/map.png';
-	console.log(mokeponPlayer);
 }
 
 function paintMap() {
@@ -384,8 +382,6 @@ function paintMap() {
 
 	mokeponPlayer.paintMokepon(lienzo);
 	sendPosition(mokeponPlayer.x, mokeponPlayer.y);
-
-	console.log(mokeponPlayer);
 
 	mokeponOpponentsList.forEach(opponent => {
 		
@@ -463,12 +459,12 @@ function checkCollision(opponent) {
 	} else {
 
 		opponentId = opponent.id;
-		
+
 		stopMoveMokepon();
 		clearInterval(moveInterval);
 		chooseOpponentPet(opponent);
 		// mostras ataques y ocultar mapa
-		map.classList.toggle('inactive');
+		// map.classList.toggle('inactive');
 		// chooseAttack.classList.toggle('inactive');
 	}
 }
