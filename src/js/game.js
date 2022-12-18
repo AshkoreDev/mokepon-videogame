@@ -127,9 +127,8 @@ function joinGame() {
 
 function startGame() {
 
-	// joinGame();
+	joinGame();
 	cardsRender(mokepones);
-	// esconder mapa, y boton reiniciar
 }
 
 function choosePlayerPet() {
@@ -151,8 +150,10 @@ function choosePlayerPet() {
 		console.log('Debes seleccionar una mascota.');
 	}
 
-	// chooseMokepon(playerPet);
-	// startMap();
+	console.log(playerPet);
+
+	chooseMokepon(playerPet);
+	startMap();
 
 	choosePet.classList.add('inactive');
 	map.classList.remove('inactive');
@@ -212,9 +213,9 @@ function attackSecuence(attackButtons) {
 
 			if (playerAttack.length === 5) {
 				
-				// sendAttacks(playerAttack);
+				sendAttacks(playerAttack);
 			}
-			// chooseOpponentAttack();
+			chooseOpponentAttack();
 		});
 	});
 }
@@ -370,24 +371,30 @@ function startMap() {
 
 	backgroundMap = new Image();
 	backgroundMap.src = './src/images/map.png';
+	console.log(mokeponPlayer);
 }
 
 function paintMap() {
 
-	// mokeponPlayer.x = mokeponPlayer.x + mokeponPlayer.speedX;
-	// mokeponPlayer.y = mokeponPlayer.y + mokeponPlayer.speedY;
+	mokeponPlayer.x = mokeponPlayer.x + mokeponPlayer.speedX;
+	mokeponPlayer.y = mokeponPlayer.y + mokeponPlayer.speedY;
 	
 	lienzo.clearRect(0,0,canvasMap.width,canvasMap.height);
 	lienzo.drawImage(backgroundMap,0,0,canvasMap.width,canvasMap.height);
 
-	// mokeponPlayer.paintMokepon(lienzo);
-	// sendPosition(mokeponPlayer.x, mokeponPlayer.y);
+	mokeponPlayer.paintMokepon(lienzo);
+	sendPosition(mokeponPlayer.x, mokeponPlayer.y);
+
+	console.log(mokeponPlayer);
 
 	mokeponOpponentsList.forEach(opponent => {
 		
 		opponent.paintMokepon(lienzo);
 		checkCollision(opponent);
+		console.log(opponent);
 	});
+
+
 }
 
 function sendPosition(x,y) {
@@ -456,14 +463,13 @@ function checkCollision(opponent) {
 	} else {
 
 		opponentId = opponent.id;
+		
 		stopMoveMokepon();
 		clearInterval(moveInterval);
 		chooseOpponentPet(opponent);
 		// mostras ataques y ocultar mapa
 		map.classList.toggle('inactive');
-		// map.classList.add('active');
-		
-		chooseAttack.classList.toggle('inactive');
+		// chooseAttack.classList.toggle('inactive');
 	}
 }
 

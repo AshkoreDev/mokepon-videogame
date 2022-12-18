@@ -61,13 +61,13 @@ h1 {
 	background-color: green;
 }
 
-input[type=radio]  {
+/*input[type=radio]  {
   display: none;
-}
+}*/
 
 .pet_cards--name {
 	color: white;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	letter-spacing: 1.1px;
 }
 
