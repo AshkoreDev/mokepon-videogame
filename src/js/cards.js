@@ -19,7 +19,8 @@ function cardsRender(mokepones) {
 		cardImage.setAttribute('width', '100');
 		cardImage.setAttribute('height', '100');
 
-		card.className = 'pet_cards'
+		card.className = 'pet_cards flex';
+		cardName.className = 'pet_cards--name';
 
 		card.append(cardName, cardOption, cardImage);
 		mokeponCards.append(card);

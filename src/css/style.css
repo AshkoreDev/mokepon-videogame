@@ -18,6 +18,15 @@
 	justify-content: center;
 }
 
+button[type=button] {
+	padding: 10px 20px;
+	color: white;
+	letter-spacing: 1.2px;
+	border-radius: 8px;
+	border: 1px solid green;
+	background-color: green;
+}
+
 main {
 	flex-direction: column;
 }
@@ -31,6 +40,7 @@ h1 {
 	/*text-align: center;*/
 }
 
+/*CARDS*/
 #choosePet {
 	width: 320px;
 	height: 100vh;
@@ -40,31 +50,34 @@ h1 {
 
 #choosePetCards {
 	margin: 40px 0;
-	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
 	gap: 20px;
 }
 
 .pet_cards {
-	width: 200px;
+	width: 220px;
+	height: 120px;
 	border-radius: 10px;
 	background-color: green;
 }
 
-#choosePetBtn {
-	padding: 10px 20px;
-	border-radius: 8px;
+input[type=radio]  {
+  display: none;
+}
+
+.pet_cards--name {
 	color: white;
-	border: 1px solid green;
-	background-color: green;
+	text-transform: uppercase;
+	letter-spacing: 1.1px;
+}
+
+#choosePetBtn {
+	/*color*/
 }
 
 /*MAP*/
 #canvasMap {
-	margin: 80px 0;
-	/*flex-direction: column;*/
+	margin: 80px auto;
 	border: 1px solid black;
 }
 
@@ -75,7 +88,7 @@ h1 {
 }
 
 .map__buttons button {
-	padding: 10px;
+	/*colores */
 }
 
 /*ATTACKS*/
@@ -89,11 +102,7 @@ h1 {
 }
 
 #restartBtn {
-	padding: 10px 20px;
-	border-radius: 8px;
-	color: white;
-	border: 1px solid green;
-	background-color: green;
+	/*color*/
 }
 
 @media screen and (min-width: 768px) {
@@ -101,3 +110,4 @@ h1 {
 		width: 700px;
 	}
 }
+
